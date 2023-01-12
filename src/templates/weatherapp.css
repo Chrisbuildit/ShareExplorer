@@ -1,0 +1,73 @@
+.weather-container {
+    position: relative;
+    width: 350px;
+    background-color: white;
+    border-radius: 2px;
+    box-shadow: .25rem .5rem 1rem 0 rgba(0, 0, 0, 0.1);
+}
+
+.weather-header {
+    width: 100%;
+    padding: 20px;
+    border-radius: 2px 2px 0 0;
+    height: 350px;
+    background: linear-gradient(#ABD0CF, #79ABAA);
+    box-sizing: border-box;
+}
+
+.weather-header h1 {
+    font-weight: 600;
+    color: white;
+    font-size: 80px;
+    letter-spacing: -12px;
+    margin: 16px 0 0 0;
+}
+
+.weather-header .location-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+    text-transform: capitalize;
+}
+
+.weather-header .location-details h2 {
+    color: white;
+    font-size: 22px;
+    font-weight: 700;
+    padding: 0 0 8px 0;
+}
+
+.weather-header .location-details h3 {
+    color: white;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.weather-content {
+    padding: 20px;
+}
+
+.tab-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 210px;
+}
+
+.no-forecast {
+    min-height: 210px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.wrong-location-error {
+    color: white;
+    font-size: 14px;
+}

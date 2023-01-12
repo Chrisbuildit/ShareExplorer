@@ -1,16 +1,65 @@
 .App {
   text-align: center;
+  position: relative;
+  color: #61dafb;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#img {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
+
+
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+
+}
+
+div {
+  text-align: center;
+  position: relative;
+  width: 1280px;
+  background-image: url('./assets/mountain-top.jpg');
+  background-size: cover;
+}
+span {
+  display: flex;
+  list-style: none;
+}
+
+button1 {
+  left: 50px;
+  margin: 12px 0;
+  position: relative;
+  padding: 8px;
+  background-color: darkblue;
+  color: white;
+  border-radius: 5px;
+
+}
+
+button2 {
+  right: 50px;
+  margin: 12px 0;
+  position: absolute;
+  padding: 8px 8px;
+  background-color: gray;
+  border-radius: 5px;
+
+}
+
+
+h3 {
+  width: 50px;
+  padding: 100px;
+  color: hsl(39,100%,50%);
+  box-sizing: border-box;
+  margin: 50px 0 0 0;
+  background-color: aquamarine;
+
+
 }
 
 .App-header {

@@ -1,0 +1,41 @@
+.navbar {
+    height: 50px;
+    position: relative;
+}
+
+.navbar nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    background-color: black;
+    padding-right: 40px;
+}
+
+.navbar ul {
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+}
+
+.navbar li {
+    list-style-type: none;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: white;
+    font-size: 1em;
+}
+
+.link--default {
+    text-decoration: none;
+}
+
+.link--active {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 5px;
+}

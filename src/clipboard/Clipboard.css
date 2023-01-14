@@ -1,0 +1,33 @@
+NAV -bar alternative
+
+div {
+    text-align: center;
+    position: relative;
+    background-image: url('./assets/mountain-top.jpg');
+    background-size: cover;
+}
+span {
+    display: flex;
+    list-style: none;
+}
+
+button1 {
+    left: 50px;
+    margin: 12px 0;
+    position: relative;
+    padding: 8px;
+    background-color: darkblue;
+    color: white;
+    border-radius: 5px;
+
+}
+
+button2 {
+    right: 50px;
+    margin: 12px 0;
+    position: absolute;
+    padding: 8px ;
+    background-color: gray;
+    border-radius: 5px;
+
+}

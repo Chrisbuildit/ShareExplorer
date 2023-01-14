@@ -4,84 +4,28 @@
   color: #61dafb;
 }
 
-#img {
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-
-
-@media (prefers-reduced-motion: no-preference) {
-
-}
-
-div {
-  text-align: center;
-  position: relative;
-  width: 1280px;
-  background-image: url('./assets/mountain-top.jpg');
-  background-size: cover;
-}
-span {
+.outer-container {
   display: flex;
-  list-style: none;
+  flex-direction: row;
+  justify-content: center;
+
+  /* Developer mode */
+  background-color: black;
 }
 
-button1 {
-  left: 50px;
-  margin: 12px 0;
-  position: relative;
-  padding: 8px;
-  background-color: darkblue;
-  color: white;
-  border-radius: 5px;
-
-}
-
-button2 {
-  right: 50px;
-  margin: 12px 0;
-  position: absolute;
-  padding: 8px 8px;
-  background-color: gray;
-  border-radius: 5px;
-
-}
-
-
-h3 {
-  width: 50px;
-  padding: 100px;
-  color: hsl(39,100%,50%);
-  box-sizing: border-box;
-  margin: 50px 0 0 0;
-  background-color: aquamarine;
-
-
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.inner-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-basis: 1200px;
+  padding-inline: 2em;
+
+  /* Developer mode */
+  background-color: darkblue;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.MountainTop {
+  width: 1280px;
+  height: 100vh;
+  background-image: url('./assets/homepage.jpg');
+  background-size: cover;
 }

@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './App.css'
 import axios from "axios";
 
-function App() {
+function Clipboard() {
 
     const apiKey = 'Q577X5CIYDHZEQY7';
 
@@ -39,7 +39,11 @@ function App() {
           }
       </span>
         </div>
+
     )
 }
 
-export default App;
+export default Clipboard;
+
+
+

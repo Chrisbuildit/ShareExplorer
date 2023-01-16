@@ -26,3 +26,13 @@
 .searchbar button {
     font-family: 'Core Sans G', Arial, sans-serif;
 }
+
+.k {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    margin: 15px 0 0 0;
+    font-weight: 400;
+}

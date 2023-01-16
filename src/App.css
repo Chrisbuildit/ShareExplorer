@@ -1,7 +1,6 @@
 .App {
   text-align: center;
   position: relative;
-  color: #61dafb;
 }
 
 .outer-container {
@@ -23,7 +22,7 @@
   background-color: darkblue;
 }
 
-.MountainTop {
+.Mountains {
   width: 1280px;
   height: 100vh;
   background-image: url('./assets/homepage.jpg');

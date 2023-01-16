@@ -1,0 +1,10 @@
+p {
+    color: black;
+}
+
+.mountain-top {
+    width: 1280px;
+    height: 100vh;
+    background-image: url('./src/assets/homepage.jpg');
+    background-size: cover;
+}

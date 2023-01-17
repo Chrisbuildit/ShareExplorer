@@ -28,8 +28,8 @@ function SearchBar({ setCompanyHandler }) {
                 `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${e.target.value}&apikey=${apiKey}`
             )
             .then((res) => {
-                console.log(res.data);
-                setSearchResults(res.data);
+                setSearchResults(res.data.bestMatches);
+                console.log(searchResults);
             });
     }, 300);
     setInputTimer(timeout);
@@ -38,29 +38,29 @@ function SearchBar({ setCompanyHandler }) {
     return (
       <>
       <span className="searchbar">
-      <input
-          type="text"
-          name="search"
-          value={query}
-          onChange={handleInputChange}
-          onKeyUp={keyPressCheck}
-          placeholder="Type the name or symbol of a company"
-      />
-
-      <button
-          type="button"
-          onClick={handleClick}
-      >
-        Search
-      </button>
+          <form>
+              <input
+                  type="text"
+                  name="search"
+                  value={query}
+                  onChange={handleInputChange}
+                  onKeyUp={keyPressCheck}
+                  placeholder="Type the name or symbol of a company"
+                  autoComplete="off"
+              />
+              <ul className='auto-complete'> {searchResults && searchResults.map((searchResult) => {
+                  return (
+                      <li key={searchResult.symbol}>{searchResult.name}</li>
+                  )})}
+              </ul>
+          </form>
+          <button
+              type="button"
+              onClick={handleClick}
+          >
+            Search
+          </button>
     </span>
-    <div className='k'>
-        <ul> {searchResults.map((searchResult) => {
-            return (
-            <li>{searchResult.name}</li>
-        )})}
-        </ul>
-    </div>
     </>
     );
 }

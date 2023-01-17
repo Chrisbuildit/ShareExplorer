@@ -27,8 +27,8 @@ function Home() {
     },[company]);
 
     return (
-        <div className='mountain-top'>
-            <SearchBar className='SearchBar' setCompanyHandler={setCompany}/>
+        <div>
+            <SearchBar setCompanyHandler={setCompany}/>
         <div> {companyOverview &&
             <>
                 <span> {company &&

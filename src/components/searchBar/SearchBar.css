@@ -5,7 +5,11 @@
     justify-content: center;
 }
 
-.searchbar input {
+.searchbar form {
+
+}
+
+.searchbar Select {
     border-radius: 2px 0 0 2px;
     border: none;
     padding: 8px 16px;
@@ -13,21 +17,7 @@
     outline: none;
 }
 
-.searchbar button {
-    border-radius: 0 2px 2px 0;
-    border: none;
-    padding: 8px 16px;
-    color: black;
-    cursor: pointer;
-    outline: none;
-}
-
-.searchbar input,
-.searchbar button {
-    font-family: 'Core Sans G', Arial, sans-serif;
-}
-
-.auto-complete {
+.searchbar ul {
     width: 100%;
     height: 100%;
     display: flex;
@@ -38,4 +28,29 @@
     margin: 15px 0 0 0;
     font-weight: 400;
     color: black;
+    gap: 2em;
 }
+
+.searchbar li {
+    list-style-type: none;
+}
+
+.searchbar button {
+    border-radius: 0 2px 2px 0;
+    border: none;
+    padding: 8px 16px;
+    color: black;
+    cursor: pointer;
+    outline: none;
+    max-height: 30px;
+}
+
+.searchbar Select,
+.searchbar button {
+    font-family: 'Core Sans G', Arial, sans-serif;
+}
+
+
+
+
+

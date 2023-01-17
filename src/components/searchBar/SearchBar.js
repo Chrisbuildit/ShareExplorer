@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './SearchBar.css';
 import axios from "axios";
+import { Hint } from 'react-autocomplete-hint';
 
 const apiKey = 'Q577X5CIYDHZEQY7';
 
@@ -28,8 +29,10 @@ function SearchBar({ setCompanyHandler }) {
                 `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${e.target.value}&apikey=${apiKey}`
             )
             .then((res) => {
-                setSearchResults(res.data.bestMatches);
-                console.log(searchResults);
+                const hintArray = []
+                res.data.bestMatches.map(a => hintArray.push(a.name))
+                setSearchResults(hintArray);
+                console.log(hintArray);
             });
     }, 300);
     setInputTimer(timeout);
@@ -37,23 +40,25 @@ function SearchBar({ setCompanyHandler }) {
 
     return (
       <>
-      <span className="searchbar">
-          <form>
-              <input
-                  type="text"
-                  name="search"
-                  value={query}
-                  onChange={handleInputChange}
-                  onKeyUp={keyPressCheck}
-                  placeholder="Type the name or symbol of a company"
-                  autoComplete="off"
-              />
-              <ul className='auto-complete'> {searchResults && searchResults.map((searchResult) => {
-                  return (
-                      <li key={searchResult.symbol}>{searchResult.name}</li>
-                  )})}
-              </ul>
-          </form>
+        <span>
+          <div className="searchbar">
+              <h5>Try typing these words</h5>
+              <code>{`[${searchResults.toString()}]`}</code>
+              <br/>
+              <br/>
+              <br/>
+              <Hint options={searchResults} allowTabFill>
+                  <input
+                         type="text"
+                         name="search"
+                         value={query}
+                         onChange={handleInputChange}
+                         onKeyUp={keyPressCheck}
+                         placeholder="Type the name or symbol of a company"
+                         autoComplete="off"
+                  />
+              </Hint>
+          </div>
           <button
               type="button"
               onClick={handleClick}

@@ -5,11 +5,7 @@
     justify-content: center;
 }
 
-.searchbar form {
-
-}
-
-.searchbar Select {
+.j {
     border-radius: 2px 0 0 2px;
     border: none;
     padding: 8px 16px;
@@ -42,7 +38,6 @@
     color: black;
     cursor: pointer;
     outline: none;
-    max-height: 30px;
 }
 
 .searchbar Select,

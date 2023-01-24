@@ -1,10 +1,10 @@
 import React from 'react';
+import './SignUp.css'
 
-
-function SignUp( props ) {
+function SignUp() {
     return (
         <div className='mountain-top'>
-            <h1>Sign Up</h1>
+            <h3>Sign Up</h3>
         </div>
     );
 }

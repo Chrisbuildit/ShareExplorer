@@ -1,6 +1,6 @@
 .navbar {
-    height: 50px;
-    position: relative;
+
+
 }
 
 .navbar nav {
@@ -9,9 +9,11 @@
     justify-content: space-between;
     align-items: center;
     position: sticky;
+    height: 50px;
     top: 0;
+    left: 0;
+    padding-right: 33px;
     background-color: black;
-    padding-right: 40px;
 }
 
 .navbar ul {

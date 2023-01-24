@@ -1,10 +1,41 @@
-p {
-    color: black;
+.container {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    padding-inline: 33px;
+    padding-top: 10px;
 }
 
-.mountain-top {
-    width: 1280px;
-    height: 100vh;
-    background-image: url('./src/assets/homepage.jpg');
-    background-size: cover;
+h2  {
+    line-height: 0;
+    font-size: 1em;
 }
+
+h3 {
+    font-size: 0.85em;
+    line-height: 0;
+}
+
+span  {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: relative;
+    width: fit-content;
+    line-height: 0;
+    background-color: white;
+}
+
+p, label {
+    font-size: 0.75em;
+    line-height: 0;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-right: 15px;
+}
+
+

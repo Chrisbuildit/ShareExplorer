@@ -11,3 +11,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.mountain-top {
+  height: 100vh;
+  background-size: cover;
+  background-image: url('./assets/mountain-top.jpg');
+}
+
+.Mountains {
+  height: 100vh;
+  background-image: url('assets/Mountains.jpg');
+  background-size: cover;
+}
+
+.carpithians1 {
+  height: 100vh;
+  background-image: url('./assets/carpithians1.jpg');
+  background-size: cover;
+}

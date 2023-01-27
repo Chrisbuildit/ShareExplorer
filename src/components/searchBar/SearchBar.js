@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import './SearchBar.css';
 import axios from "axios";
+import AsyncSelect from 'react-select/async';
 
 const apiKey = 'Q577X5CIYDHZEQY7';
 
-function SearchBar({ setCompanyHandler }) {
+function SearchBar({ setCompanyHandler }, {data}) {
     const [query, setQuery] = useState('');
     const [inputTimer, setInputTimer] = useState(null);
 
@@ -35,7 +36,7 @@ function SearchBar({ setCompanyHandler }) {
 
     return (
         <>
-      <span className="searchbar">
+      <span className={ data? "searchbar" : "searchbarTop"}>
       <input
           type="text"
           name="search"

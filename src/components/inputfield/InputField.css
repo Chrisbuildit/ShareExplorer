@@ -1,0 +1,12 @@
+.InputField {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: relative;
+    width: 20em;
+    align-items: center;
+}
+
+.InputField label {
+    font-weight: bold;
+}

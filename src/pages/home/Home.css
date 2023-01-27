@@ -16,18 +16,19 @@ h3 {
     line-height: 0;
 }
 
+
+p, label {
+    font-size: 0.75em;
+    line-height: 0;
+    font-family: "Roboto", monospace;
+}
+
 span  {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     position: relative;
     width: fit-content;
-    line-height: 0;
-    background-color: white;
-}
-
-p, label {
-    font-size: 0.75em;
     line-height: 0;
 }
 
@@ -37,5 +38,3 @@ section {
     justify-content: space-between;
     padding-right: 15px;
 }
-
-

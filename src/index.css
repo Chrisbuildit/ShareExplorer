@@ -29,3 +29,12 @@ code {
   background-image: url('./assets/carpithians1.jpg');
   background-size: cover;
 }
+
+button {
+  border-radius: 2px;
+  border: none;
+  padding: 8px 16px;
+  color: black;
+  cursor: pointer;
+  outline: none;
+}

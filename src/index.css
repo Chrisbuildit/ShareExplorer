@@ -33,8 +33,24 @@ code {
 button {
   border-radius: 2px;
   border: none;
-  padding: 8px 16px;
+  padding: 0.7em 1.4em;
   color: black;
   cursor: pointer;
   outline: none;
+  margin-left: auto;
+}
+
+.SignUpIn {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.SignUpIn form {
+  display: flex;
+  flex-direction: column;
+  margin: 50px;
+  gap: 12px;
+  justify-content: space-between;
+  height: fit-content;
 }

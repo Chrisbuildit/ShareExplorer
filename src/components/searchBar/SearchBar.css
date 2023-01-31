@@ -3,17 +3,6 @@
     flex-direction: row;
     justify-content: center;
     position: relative;
-    top: 25px;
-    height: 30px;
-    background-color: transparent;
-}
-
-.searchbarTop {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    position: relative;
-    top: 70px;
     height: 30px;
     background-color: transparent;
 }

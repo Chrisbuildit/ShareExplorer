@@ -1,20 +1,23 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import axios from "axios";
 import SearchBar from "../../components/searchBar/SearchBar";
 import './Home.css'
 import { TechnicalAnalysis } from "react-ts-tradingview-widget";
-import { AdvancedRealTimeChart } from "react-ts-tradingview-widget";
+import { SymbolOverview } from "react-ts-tradingview-widget";
+import {StateContext} from "../../context/StateContext";
+import {Link} from "react-router-dom";
 
 
 function Home() {
 
     const apiKey = 'Q577X5CIYDHZEQY7';
 
-    const [companyOverview, setCompanyOverview] = useState('');
-    const [company, setCompany] = useState(null)
-
+    const {company} = useContext(StateContext);
+    const [companyOverview, setCompanyOverview] = useState({});
+    const [error, toggleError] = useState(false)
 
     async function fetchData() {
+        toggleError(false);
         try {
             const response = await
                 axios.get(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${company}&apikey=${apiKey}`);
@@ -22,27 +25,54 @@ function Home() {
             setCompanyOverview(response.data);
         } catch (e) {
             console.error(e);
+            toggleError(true);
         }
     }
     useEffect(() => {
         if(company) {
             fetchData();
         }
+
     },[company]);
 
+
     return (
+
         <div className='container carpithians1'>
-            <SearchBar setCompanyHandler={setCompany} data={companyOverview}/>
-            <div> {companyOverview &&
-            <TechnicalAnalysis
-                colorTheme="light"
-                symbol={company}
-                isTransparent="true"
-            >
-            </TechnicalAnalysis>
+            <div className="widgets"> {company &&
+                <>
+                {/*<TechnicalAnalysis*/}
+                {/*    colorTheme="light"*/}
+                {/*    symbol={company}*/}
+                {/*    width="350"*/}
+                {/*    height="375"*/}
+                {/*    isTransparent="true"*/}
+                {/*>*/}
+                {/*</TechnicalAnalysis>*/}
+                <SymbolOverview
+                    symbols={company}
+                    lineWidth="1"
+                    width="350"
+                    height="370"
+                    widgetFontColor="black"
+                    >
+                </SymbolOverview>
+                </>
             }
             </div>
-            <div> {companyOverview &&
+            <div> {!companyOverview.Name ?
+                <div> {company &&
+                    <>
+                    <p>Er is helaas geen data beschikbaar voor deze bedrijf.</p>
+                    <p>Klik op onderstaande link voor data van Tradingview.</p>
+                    <p><a href={`https://www.tradingview.com/symbols/${company}/`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                    >
+                    Link</a></p>
+                    </>
+                }
+                </div> :
                 <>
                     <h2>Fundamental data:</h2>
                     <span>

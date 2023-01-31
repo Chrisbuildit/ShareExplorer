@@ -6,9 +6,16 @@
     padding-top: 10px;
 }
 
+.widgets {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 3em;
+}
+
 h2  {
     line-height: 0;
-    font-size: 1em;
+    font-size: 1.2em;
 }
 
 h3 {

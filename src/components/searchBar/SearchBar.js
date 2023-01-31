@@ -1,21 +1,23 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useState} from 'react';
 import './SearchBar.css';
 import axios from "axios";
-import AsyncSelect from 'react-select/async';
+import {StateContext} from "../../context/StateContext";
 
 const apiKey = 'Q577X5CIYDHZEQY7';
 
-function SearchBar({ setCompanyHandler }, {data}) {
+
+function SearchBar() {
     const [query, setQuery] = useState('');
     const [inputTimer, setInputTimer] = useState(null);
+    const {setCompany} = useContext(StateContext);
 
     function handleClick() {
-        setCompanyHandler(query);
+        setCompany(query);
     }
 
     function keyPressCheck(e) {
         if (e.keyCode === 13) {
-            setCompanyHandler(query);
+            setCompany(query);
         }
     }
     const handleInputChange = async (e) => {
@@ -36,14 +38,14 @@ function SearchBar({ setCompanyHandler }, {data}) {
 
     return (
         <>
-      <span className={ data? "searchbar" : "searchbarTop"}>
+      <span className="searchbar">
       <input
           type="text"
           name="search"
           value={query}
           onChange={handleInputChange}
           onKeyUp={keyPressCheck}
-          placeholder="Type the name or symbol of a company"
+          placeholder="Type the symbol of a company"
       />
 
       <button

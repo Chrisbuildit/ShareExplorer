@@ -51,7 +51,7 @@ function AuthContextProvider( { children } ) {
 
     async function fetchUserData( jwt, id, redirect ) {
         try {
-            const response = await axios.get( `http://localhost:3000/600/users/${ id }`, {
+            const response = await axios.get( `https://frontend-educational-backend.herokuapp.com/api/user/${ id }`, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${ jwt }`,
@@ -63,7 +63,8 @@ function AuthContextProvider( { children } ) {
                 user: {
                     email: response.data.email,
                     id: response.data.id,
-                    username: response.data.username
+                    username: response.data.username,
+                    role:response.data.role
                 },
                 status: "done"
             } )

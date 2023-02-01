@@ -17,7 +17,7 @@ function AuthContextProvider( { children } ) {
     useEffect( () => {
         // haal de JWT op uit Local Storage
         const storedToken = localStorage.getItem( 'token' )
-
+        console.log(storedToken)
 
         // als er WEL een token is, haal dan opnieuw de gebruikersdata op
         if ( storedToken ) {
@@ -25,7 +25,7 @@ function AuthContextProvider( { children } ) {
 
             if ( Math.floor( Date.now() / 1000 ) < decodedToken.exp ) {
                 console.log( "De gebruiker is NOG STEEDS ingelogd 🔓" )
-                void fetchUserData( storedToken, decodedToken.sub )
+                void fetchUserData( storedToken )
             } else  {
                 console.log( "De token is verlopen" )
                 localStorage.removeItem( 'token' )
@@ -41,17 +41,34 @@ function AuthContextProvider( { children } ) {
         }
     }, [] )
 
-    function login( jwt ) {
-        console.log( "De gebruiker is ingelogd 🔓" )
-        localStorage.setItem( 'token', jwt )
-        const decodedToken = jwt_decode( jwt );
-
-        void fetchUserData( jwt, decodedToken.sub, "/Profile" )
+    function login( userData, jwt ) {
+        console.log("De gebruiker is ingelogd 🔓")
+        localStorage.setItem('token', jwt)
+        // const decodedToken = jwt_decode( jwt );
+        setUserData(userData, "/Profile")
     }
 
-    async function fetchUserData( jwt, id, redirect ) {
+        function setUserData( userData, redirect ) {
+                setAuth( {
+                    ...auth,
+                    isAuth: true,
+                    user: {
+                        email: userData.email,
+                        id: userData.id,
+                        username: userData.username,
+                        role:userData.role
+                    },
+                    status: "done"
+                } )
+                if ( redirect ) {
+                    navigate( redirect )
+                }
+            }
+
+
+    async function fetchUserData( jwt, redirect ) {
         try {
-            const response = await axios.get( `https://frontend-educational-backend.herokuapp.com/api/user/${ id }`, {
+            const response = await axios.get( `https://frontend-educational-backend.herokuapp.com/api/user`, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${ jwt }`,

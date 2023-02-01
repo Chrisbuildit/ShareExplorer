@@ -5,8 +5,7 @@ import InputField from "../../components/inputfield/InputField";
 import {Link} from "react-router-dom";
 
 function SignIn() {
-
-const [ email, setEmail ] = useState( "" )
+const [ username, setUsername ] = useState( "" )
 const [ password, setPassword ] = useState( "" )
 const [error, toggleError] = useState(false)
 
@@ -17,10 +16,10 @@ async function handleLogin(e) {
     toggleError(false);
     try {
         const response = await axios.post('https://frontend-educational-backend.herokuapp.com/api/auth/signin',{
-            email: email,
+            username: username,
             password: password,
         })
-        login( response.data.accessToken )
+        login( response )
     } catch ( e ) {
         console.error( e )
         toggleError(true)
@@ -31,9 +30,9 @@ async function handleLogin(e) {
 return (
     <main className="SignUpIn Mountains">
         <form onSubmit={ handleLogin }>
-            <InputField label="Email" type="email" value={ email } setState={setEmail}/>
+            <InputField label="Username:" type="text" value={ username } setState={setUsername}/>
             <InputField label="Password" type="password" value={ password } setState={setPassword}/>
-            {error && <p className="error">Combinatie van emailadres en wachtwoord is onjuist</p>}
+            {error && <p className="error">Combinatie van username en wachtwoord is onjuist</p>}
             <button type="submit">SignIn</button>
         </form>
         <p>Heb je nog geen account? <Link to="/SignUp">Registreer</Link> je dan eerst.</p>

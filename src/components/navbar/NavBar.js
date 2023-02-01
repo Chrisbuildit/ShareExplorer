@@ -3,7 +3,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import SearchBar from "../searchBar/SearchBar";
 
-function Nav() {
+function Nav({setCompanyHandler}) {
     return (
         <header>
             <div className="navbar">
@@ -16,7 +16,7 @@ function Nav() {
                     </ul>
                     <ul>
                         <li>
-                            <SearchBar/>
+                            <SearchBar setCompanyHandler={setCompanyHandler}/>
                         </li>
                     </ul>
                     <ul>

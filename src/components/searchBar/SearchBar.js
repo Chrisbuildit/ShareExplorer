@@ -1,23 +1,24 @@
-import React, {useContext, useState} from 'react';
+import React, { useState } from 'react';
 import './SearchBar.css';
 import axios from "axios";
-import {StateContext} from "../../context/StateContext";
+import {useNavigate} from "react-router-dom";
 
 const apiKey = 'Q577X5CIYDHZEQY7';
 
-
-function SearchBar() {
+function SearchBar({setCompanyHandler}) {
     const [query, setQuery] = useState('');
     const [inputTimer, setInputTimer] = useState(null);
-    const {setCompany} = useContext(StateContext);
+    const navigate = useNavigate();
+    // const {setCompany} = useContext(StateContext);
 
     function handleClick() {
-        setCompany(query);
+        setCompanyHandler(query);
+        navigate("/SearchResults")
     }
 
     function keyPressCheck(e) {
         if (e.keyCode === 13) {
-            setCompany(query);
+            setCompanyHandler(query);
         }
     }
     const handleInputChange = async (e) => {

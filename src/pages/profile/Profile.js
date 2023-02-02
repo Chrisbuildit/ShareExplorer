@@ -6,12 +6,13 @@ function Profile() {
     const [companies, setCompanies] = useState("");
     const { user : { username } } = useContext(AuthContext);
 
+
     useEffect(() => {
         setCompanies(localStorage.getItem("companies"));
     }, []);
 
     return (
-        <main className="container">
+        <main className="container Glacier">
             <p>Welcome <span>{ username }</span></p>
             <p><Link to="/SearchResults">{companies}</Link></p>
         </main>

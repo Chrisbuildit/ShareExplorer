@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import axios from "axios";
 import './SearchResults.css'
 import { TechnicalAnalysis } from "react-ts-tradingview-widget";
 import { SymbolOverview } from "react-ts-tradingview-widget";
-import {useParams} from "react-router-dom";
+import {AuthContext} from "../../context/AuthContext";
+
 
 
 function SearchResults({company}) {
@@ -11,7 +12,9 @@ function SearchResults({company}) {
     const apiKey = 'Q577X5CIYDHZEQY7';
 
     const [companyOverview, setCompanyOverview] = useState({});
+    const { isAuth } = useContext( AuthContext );
     const [error, toggleError] = useState(false)
+
 
 
     async function fetchData() {
@@ -21,7 +24,7 @@ function SearchResults({company}) {
                 axios.get(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${company}&apikey=${apiKey}`);
             console.log(response.data);
             setCompanyOverview(response.data);
-            localStorage.setItem("companies",company);
+            isAuth && localStorage.setItem("companies",company);
         } catch (e) {
             console.error(e);
             toggleError(true);

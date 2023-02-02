@@ -1,9 +1,13 @@
 import './NavBar.css'
-import React from "react";
+import React, {useContext} from "react";
 import { NavLink } from "react-router-dom";
 import SearchBar from "../searchBar/SearchBar";
+import {AuthContext} from "../../context/AuthContext";
 
 function Nav({setCompanyHandler}) {
+
+    const { logout } = useContext(AuthContext);
+
     return (
         <header>
             <div className="navbar">
@@ -32,8 +36,11 @@ function Nav({setCompanyHandler}) {
                             <NavLink className={ ( { isActive } ) => isActive ? "link--active" : "link--default" }
                                      to="/SignUp">Sign Up</NavLink>
                         </li>
+                        <li>
+                            <NavLink className={ ( { isActive } ) => isActive ? "link--active" : "link--default" }
+                                     to="/" onClick={logout}>Sign Out</NavLink>
+                        </li>
                     </ul>
-
                 </nav>
             </div>
         </header>

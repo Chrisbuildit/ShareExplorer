@@ -12,6 +12,12 @@ code {
     monospace;
 }
 
+.Glacier {
+  height: 100vh;
+  background-size: cover;
+  background-image: url('./assets/Glacier.jpg');
+}
+
 .mountain-top {
   height: 100vh;
   background-size: cover;
@@ -54,3 +60,27 @@ button {
   justify-content: space-between;
   height: fit-content;
 }
+
+.InputField {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: relative;
+  width: 20em;
+  align-items: center;
+}
+
+.InputField label {
+  font-weight: bold;
+}
+
+.CheckBox label {
+  top: 10px;
+  position: relative;
+}
+
+.CheckBox input {
+  left: -40px;
+  position: relative;
+}
+

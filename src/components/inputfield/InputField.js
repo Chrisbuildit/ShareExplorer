@@ -1,10 +1,10 @@
 import React from "react";
-import './InputField.css'
+
 
 function InputField({label, type, value, setState}) {
     return (
     <div className='InputField'>
-        <label>{label}</label>
+        <label className="InputField label">{label}</label>
         <input
             type={type}
             value={value}

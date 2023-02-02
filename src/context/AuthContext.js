@@ -107,7 +107,7 @@ function AuthContextProvider( { children } ) {
             user: null,
             status: "done"
         } )
-        navigate( "/SignIn" )
+        navigate( "/" )
     }
 
     const contextData = {

@@ -11,7 +11,7 @@ import Profile from "./pages/profile/Profile";
 
 function App() {
 
-        const { isAuth } = useContext( AuthContext );
+        // const { isAuth } = useContext( AuthContext );
         const [company, setCompany] = useState("")
 
         return (
@@ -20,8 +20,8 @@ function App() {
                     <Routes>
                             <Route path="/" element={ <Home/> }/>
                             <Route path="/SearchResults" element={ <SearchResults company={company}/> }/>
-                            <Route path="/Profile" element={ isAuth ? <Profile/> : <p className="Profile">Je bent niet ingelogd</p> }/>
-                            {/*<Route path="/Profile" element={ <Profile/> }/>*/}
+                            {/*<Route path="/Profile" element={ isAuth ? <Profile/> : <>Je bent niet ingelogd</p> }/>*/}
+                            <Route path="/Profile" element={ <Profile/> }/>
                             <Route path="/SignUp" element={ <SignUp/> }/>
                             <Route path="/SignIn" element={ <SignIn/> }/>
                     </Routes>

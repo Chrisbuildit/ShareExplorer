@@ -1,0 +1,15 @@
+.Home {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: flex-start;
+    margin-top: 0;
+    top: 10px;
+    text-align: left;
+    margin-left: 20vw;
+    color: white;
+}
+
+.Home h3 {
+    font-size: 1em;
+}

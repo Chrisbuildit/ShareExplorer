@@ -30,7 +30,7 @@ async function handleLogin(e) {
 }
 
 return (
-    <div className="Container Mountains">
+    <div className="Mountains">
         <p className="NoAccount">Heb je nog geen account? <Link to="/SignUp">Registreer</Link> je dan eerst.</p>
         <main className="SignUpIn">
             <form onSubmit={ handleLogin }>

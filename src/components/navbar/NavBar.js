@@ -1,6 +1,6 @@
 import './NavBar.css'
 import React, {useContext} from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import SearchBar from "../searchBar/SearchBar";
 import {AuthContext} from "../../context/AuthContext";
 
@@ -14,13 +14,15 @@ function Nav({setCompanyHandler}) {
                 <nav>
                     <ul>
                         <li>
-                            <NavLink className={ ( { isActive } ) => isActive ? "link--active" : "link--default" }
-                                     to="/">Share Recommendation</NavLink>
+                            <Link className="link--default" to="/">Share Recommendation</Link>
                         </li>
                     </ul>
                     <ul>
                         <li>
-                            <SearchBar setCompanyHandler={setCompanyHandler}/>
+                            <SearchBar
+                                setCompanyHandler={setCompanyHandler}
+                                className={ ( { isActive } ) => isActive ? "link--active" : "link--default" }
+                            />
                         </li>
                     </ul>
                     <ul>

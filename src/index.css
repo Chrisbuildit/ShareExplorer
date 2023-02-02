@@ -12,6 +12,12 @@ code {
     monospace;
 }
 
+.Sunny-mountain {
+  height: 100vh;
+  background-size: cover;
+  background-image: url('./assets/Sunny-mountain.jpeg');
+}
+
 .Glacier {
   height: 100vh;
   background-size: cover;

@@ -39,8 +39,7 @@ function Nav({setCompanyHandler}) {
                                      to="/SignUp">Sign Up</NavLink>
                         </li>
                         <li>
-                            <NavLink className={ ( { isActive } ) => isActive ? "link--active" : "link--default" }
-                                     to="/" onClick={logout}>Sign Out</NavLink>
+                            <Link className="link--default" to="/" onClick={logout}>Sign Out</Link>
                         </li>
                     </ul>
                 </nav>

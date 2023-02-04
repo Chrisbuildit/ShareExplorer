@@ -18,7 +18,7 @@ function App() {
         <>
                     <NavBar setCompanyHandler={setCompany}/>
                     <Routes>
-                            <Route path="/" element={ <Home/> }/>
+                            <Route path="/" element={ <Home company={company}/> }/>
                             <Route path="/SearchResults" element={ <SearchResults company={company}/> }/>
                             {/*<Route path="/Profile" element={ isAuth ? <Profile/> : <>Je bent niet ingelogd</p> }/>*/}
                             <Route path="/Profile" element={ <Profile/> }/>

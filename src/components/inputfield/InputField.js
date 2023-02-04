@@ -1,6 +1,5 @@
 import React from "react";
 
-
 function InputField({label, type, value, setState}) {
     return (
     <div className='InputField'>

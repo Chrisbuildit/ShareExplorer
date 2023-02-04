@@ -4,10 +4,11 @@
     position: relative;
     align-items: flex-start;
     margin-top: 0;
-    top: 10px;
+    top: 30px;
     text-align: left;
     margin-left: 20vw;
-    color: white;
+    color: black;
+    font-weight: bold;
 }
 
 .Home h3 {

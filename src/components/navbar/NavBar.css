@@ -1,7 +1,3 @@
-.navbar {
-
-
-}
 
 .navbar nav {
     display: flex;
@@ -19,7 +15,7 @@
 .navbar ul {
     display: flex;
     flex-direction: row;
-    gap: 2em;
+    gap: 1.5em;
 }
 
 .navbar li {

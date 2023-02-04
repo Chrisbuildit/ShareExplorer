@@ -43,14 +43,14 @@ function SearchResults({company}) {
         <div className='container carpithians1'>
             <div className="widgets"> {company &&
                 <>
-                    {/*<TechnicalAnalysis*/}
-                    {/*    colorTheme="light"*/}
-                    {/*    symbol={company}*/}
-                    {/*    width="350"*/}
-                    {/*    height="375"*/}
-                    {/*    isTransparent="true"*/}
-                    {/*>*/}
-                    {/*</TechnicalAnalysis>*/}
+                    <TechnicalAnalysis
+                        colorTheme="light"
+                        symbol={company}
+                        width="350"
+                        height="375"
+                        isTransparent="true"
+                    >
+                    </TechnicalAnalysis>
                     <SymbolOverview
                         symbols={company}
                         lineWidth="1"
@@ -74,7 +74,7 @@ function SearchResults({company}) {
                             Link</a></p>
                     </>
                 }
-                </div> :
+                </div> : company &&
                 <>
                     <h2>Fundamental data:</h2>
                     <span>

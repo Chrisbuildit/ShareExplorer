@@ -14,28 +14,26 @@ will include a stock screener as well as the ability to save company data for fu
 
 ## Project screenshot
 
-![Text] (src/assets/Screenshot.png)
+![SearchResults page](src/assets/Screenshot.png)
 
 ## Installation and setup instructions
 
-Example:
 Clone down this repository. You will need node and npm installed globally on your machine.
 
-Installation:
+**Installation:**
 
 npm install
 
-To Run Test Suite:
+**To Run Test Suite:**
 
 npm test
 
-To Start Server:
+**To Start Server:**
 
 npm start
 
-To Visit App:
+**To Visit App:**
 
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The page will reload when you make changes. You may also see any lint errors in the console.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.

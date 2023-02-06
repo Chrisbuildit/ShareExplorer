@@ -14,7 +14,7 @@ function Nav({setCompanyHandler}) {
                 <nav>
                     <ul>
                         <li>
-                            <Link className="link--default" to="/">Share Recommendation</Link>
+                            <Link className="link--default" to="/">Share Explorer</Link>
                         </li>
                     </ul>
                     <ul>

@@ -12,3 +12,8 @@
 .Profile h3 {
     font-size: 1em;
 }
+
+.Profilebutton {
+    position: absolute;
+    top: 60px;
+}

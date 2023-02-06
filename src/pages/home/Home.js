@@ -8,13 +8,12 @@ function Home({company}) {
 
     return (
         <div className='Glacier'>
-            <section className="Home"> {!company &&
+            <section className="Home">
                 <>
-                <h3>Welkom op deze site</h3>
-                <p>Hier kun je gegevens opvragen van NYSE-beursgenoteerde bedrijven terwijl je genieten van mooie natuurfoto's. </p>
-                <p>Er word een aanbeveling gegeven of de bedrijf een waardepropositie is of niet. De aanbeveling is afkomstig van externe bronnen.</p>
+                <h3>Welcome on this website</h3>
+                <p>Here you can find the most important data for company shares while enjoying beautiful mountain scenery. </p>
+                <p>You will be provided with a trading advice on each share. Please note that you can only perform 5 searches per minute for now.</p>
                 </>
-                }
             </section>
         </div>
     );

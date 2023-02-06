@@ -10,7 +10,7 @@
 .searchbar section {
     display: flex;
     flex-direction: column;
-    gap: 1em;
+    gap: 0.5em;
     align-content: flex-start;
 }
 
@@ -31,6 +31,7 @@ input {
     align-self: flex-start;
     margin-left: -40px;
     max-width: fit-content;
+    gap: 0.3em;
 }
 
 .searchbar Select,
@@ -38,7 +39,9 @@ input {
     font-family: 'Core Sans G', Arial, sans-serif;
 }
 
-
+.Warning {
+    color: crimson;
+}
 
 
 

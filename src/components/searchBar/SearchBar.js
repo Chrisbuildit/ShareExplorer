@@ -50,7 +50,7 @@ function SearchBar({setCompanyHandler}) {
 
     return (
         <>
-    <span className="searchbar" >
+    <form className="searchbar" onMouseLeave={abort}>
         <section>
               <input
                   type="text"
@@ -58,9 +58,10 @@ function SearchBar({setCompanyHandler}) {
                   value={query}
                   onChange={handleInputChange}
                   onClick={keyPressCheck}
-                  placeholder="Type the symbol of a company"
+                  placeholder="Type the name or symbol of a company"
                   autoComplete="off"
               />
+              <p className="Warning" >{query &&<b>Type the symbol of the correct option to perform a search</b>}</p>
               <ul>
                 {query && searchResults.map((post) => {
                     return <li key={post.id}>
@@ -75,7 +76,7 @@ function SearchBar({setCompanyHandler}) {
       >
         Search
       </button>
-    </span>
+    </form>
         </>
     );
 }

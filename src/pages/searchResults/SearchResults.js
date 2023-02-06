@@ -24,7 +24,7 @@ function SearchResults({company}) {
                 axios.get(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${company}&apikey=${apiKey}`);
             console.log(response.data);
             setCompanyOverview(response.data);
-            isAuth && localStorage.setItem("companies",company);
+            isAuth && localStorage.setItem("lastSearchCompany",company);
         } catch (e) {
             console.error(e);
             toggleError(true);
@@ -62,18 +62,31 @@ function SearchResults({company}) {
                 </>
             }
             </div>
-            <div> {!companyOverview.Name ?
-                <div> {company &&
+            <div> {!Object(companyOverview.Name).length > 0 ?
+                <div> {!Object.keys(companyOverview).length > 0 ?
+                    <div> {company &&
+                        <>
+                            <p>Unfortunately we have no data for this company.</p>
+                            <p>&nbsp;</p>
+                            <p>You can click on the below link for data from Tradingview.</p>
+                            <p>&nbsp;</p>
+                            <p><a href={`https://www.tradingview.com/symbols/${company}/`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                            >
+                                Link</a></p>
+                        </>
+                    }
+                    </div>
+                 : company &&
                     <>
-                        <p>Er is helaas geen data beschikbaar voor deze bedrijf.</p>
-                        <p>Klik op onderstaande link voor data van Tradingview.</p>
-                        <p><a href={`https://www.tradingview.com/symbols/${company}/`}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                        >
-                            Link</a></p>
+                        <p>You have exceeded your number of searches.</p>
+                        <p>&nbsp;</p>
+                        <p>You can only make 5 searches per minute.</p>
+                        <p>&nbsp;</p>
+                        <p>Make yourself a cup of coffee.</p>
                     </>
-                }
+                    }
                 </div> : company &&
                 <>
                     <h2>Fundamental data:</h2>

@@ -1,26 +1,33 @@
 import React, {useContext, useEffect, useState} from 'react';
 import { AuthContext} from "../../context/AuthContext";
-import {Link} from "react-router-dom";
 import './Profile.css'
+import {useNavigate} from "react-router-dom";
 
-function Profile() {
-    const [companies, setCompanies] = useState("");
+function Profile({setCompanyHandler2}) {
+    const [lastSearch, setLastSearch] = useState("");
     const {isAuth} = useContext(AuthContext);
 
+    const navigate = useNavigate();
+
+    function handleClick() {
+        setCompanyHandler2(lastSearch);
+        navigate("/SearchResults")
+    }
+
     useEffect(() => {
-        setCompanies(localStorage.getItem("companies"));
+        setLastSearch(localStorage.getItem("lastSearchCompany"));
     }, []);
 
     return (
         <div className="Sunny-mountain">
             {isAuth ?
                 <div className="Profile">
-                    <h3>Welkom terug!</h3>
-                    <p>De laatste bedrijf die je hebt bezocht verschijnt beneden:</p>
-                    <p><Link to="/SearchResults">{companies}</Link></p>
+                    <h3>Welcome back!</h3>
+                    <p>Your last search was for:</p>
+                    <button className="Profilebutton" onClick={handleClick}>{lastSearch}</button>
                 </div>
                 :
-                <p className="Profile">Je bent niet ingelogd</p>
+                <p className="Profile">You are not signed in.</p>
             }
         </div>
     );

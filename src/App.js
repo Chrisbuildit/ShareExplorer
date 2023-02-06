@@ -21,7 +21,7 @@ function App() {
                             <Route path="/" element={ <Home company={company}/> }/>
                             <Route path="/SearchResults" element={ <SearchResults company={company}/> }/>
                             {/*<Route path="/Profile" element={ isAuth ? <Profile/> : <>Je bent niet ingelogd</p> }/>*/}
-                            <Route path="/Profile" element={ <Profile/> }/>
+                            <Route path="/Profile" element={ <Profile setCompanyHandler2={setCompany}/> }/>
                             <Route path="/SignUp" element={ <SignUp/> }/>
                             <Route path="/SignIn" element={ <SignIn/> }/>
                     </Routes>

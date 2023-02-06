@@ -80,6 +80,10 @@ button {
   font-weight: bold;
 }
 
+.InputField input {
+  height: 1.7em;
+}
+
 .CheckBox label {
   top: 10px;
   position: relative;

@@ -31,7 +31,7 @@ async function handleLogin(e) {
 
 return (
     <div className="Mountains">
-        <p className="NoAccount">Heb je nog geen account? <Link to="/SignUp">Registreer</Link> je dan eerst.</p>
+        <p className="NoAccount">Do you not have an account? <Link to="/SignUp">Register</Link> first.</p>
         <main className="SignUpIn">
             <form onSubmit={ handleLogin }>
                 <InputField label="Username:" type="text" value={ username } setState={setUsername}/>
@@ -40,8 +40,8 @@ return (
                     <label><b>Show password</b></label>
                     <input type="checkbox" checked={ check } onChange={() => toggleCheck(!check)}/>
                 </section>
-                {error && <p className="error">Combinatie van username en wachtwoord is onjuist</p>}
-                <button type="submit">SignIn</button>
+                {error && <p className="error">Combination of username and password is incorrect.</p>}
+                <button type="submit">Sign In</button>
             </form>
         </main>
     </div>

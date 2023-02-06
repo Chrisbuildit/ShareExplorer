@@ -23,11 +23,15 @@ function Profile({setCompanyHandler2}) {
             {isAuth ?
                 <div className="Profile">
                     <h3>Welcome back!</h3>
-                    <p>Your last search was for:</p>
-                    <button className="Profilebutton" onClick={handleClick}>{lastSearch}</button>
+                    {lastSearch ?
+                    <>
+                        <p>Your last search was for:</p>
+                        <button className="Profilebutton" onClick={handleClick}>{lastSearch}</button>
+                    </>
+                    :<p>You have no recorded data.</p>}
                 </div>
                 :
-                <p className="Profile">You are not signed in.</p>
+                <h3 className="Profile">You are not signed in.</h3>
             }
         </div>
     );

@@ -28,24 +28,23 @@ function SearchBar({setCompanyHandler}) {
     }
 
     const handleInputChange = async (e) => {
-        setQuery(e.target.value);
-        clearTimeout(inputTimer);
-        let timeout = setTimeout(() => {
+        try {
             console.log("FETCHING RESULTS");
-            axios
-                .get(
+            const result = await
+                axios.get(
                     `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${e.target.value}&apikey=${apiKey}`
                 )
-                .then((res) => {
+                    setQuery(e.target.value);
                     const hintArray = []
-                    res.data.bestMatches.map((a) => {
+                    result.data.bestMatches.map((a) => {
                         return hintArray.push({symbol: a["1. symbol"], name: a["2. name"]})
                     });
                     setSearchResults(hintArray);
-                    console.log(res.data);
-                });
-        }, 300);
-        setInputTimer(timeout);
+                    console.log(result.data);
+                } catch (e) {
+                        console.error(e);
+                        toggleError(true);
+                    }
     };
 
     return (

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import './SearchBar.css';
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
@@ -7,34 +7,45 @@ const apiKey = 'Q577X5CIYDHZEQY7';
 
 function SearchBar({setCompanyHandler}) {
     const [query, setQuery] = useState('');
-    const [inputTimer, setInputTimer] = useState(null);
     const [searchResults, setSearchResults] = useState([""])
     const navigate = useNavigate();
-    // const {setCompany} = useContext(StateContext);
 
-    function handleClick() {
+    function handleClick(e) {
+        e.preventDefault();
         setCompanyHandler(query);
-        navigate("/SearchResults")
         setQuery("")
     }
 
-    function keyPressCheck(e) {
+    function navigation(e) {
+            e.preventDefault();
             setCompanyHandler("")
             navigate("/SearchResults")
         }
+
+    function keyPressCheck(e) {
+        if (e.keyCode === 13) {
+            setCompanyHandler(query);
+            setQuery("")
+        }
+    }
 
     function abort() {
         setQuery("")
     }
 
-    const handleInputChange = async (e) => {
+    function value(e) {
+        setQuery(e.target.value);
+        setSearchResults([""]);
+    }
+
+    useEffect(() => {
+    const fetchData = async (e) => {
         try {
             console.log("FETCHING RESULTS");
             const result = await
                 axios.get(
-                    `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${e.target.value}&apikey=${apiKey}`
+                    `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${query}&apikey=${apiKey}`
                 )
-                    setQuery(e.target.value);
                     const hintArray = []
                     result.data.bestMatches.map((a) => {
                         return hintArray.push({symbol: a["1. symbol"], name: a["2. name"]})
@@ -43,9 +54,12 @@ function SearchBar({setCompanyHandler}) {
                     console.log(result.data);
                 } catch (e) {
                         console.error(e);
-                        toggleError(true);
                     }
     };
+    if(Object.keys(query).length > 2) {
+    void fetchData();
+    }
+    },[query]);
 
     return (
         <>
@@ -55,14 +69,18 @@ function SearchBar({setCompanyHandler}) {
                   type="text"
                   name="search"
                   value={query}
-                  onChange={handleInputChange}
-                  onClick={keyPressCheck}
-                  placeholder="Type the name or symbol of a company"
+                  onChange={value}
+                  onClick={navigation}
+                  // Below doesn't work
+                  // onKeyUp={keyPressCheck}
+                  placeholder="Type a company name or symbol"
                   autoComplete="off"
               />
-              <p className="Warning" >{query &&<b>Type the symbol of the correct option to perform a search</b>}</p>
+              <p className="Warning" >{Object.keys(query).length > 2 ?
+                  <b>Type the symbol of the correct option to perform a search</b>
+                : query && <b>Type a minimum of three characters</b>}</p>
               <ul>
-                {query && searchResults.map((post) => {
+                {Object.keys(query).length > 2 && searchResults.map((post) => {
                     return <li key={post.id}>
                         {post.symbol +", "+ post.name}
                     </li>

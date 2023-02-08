@@ -14,9 +14,9 @@ function SearchResults({company}) {
     const [companyOverview, setCompanyOverview] = useState({});
     const { isAuth } = useContext( AuthContext );
     const [error, toggleError] = useState(false)
-    const [pastSearches, setPastSearches] = useState([{id: '',}])
+    // const [pastSearches, setPastSearches] = useState([{id: '',}])
 
-
+    useEffect(() => {
     async function fetchData() {
         toggleError(false);
         try {
@@ -24,19 +24,16 @@ function SearchResults({company}) {
                 axios.get(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${company}&apikey=${apiKey}`);
             console.log(response.data);
             setCompanyOverview(response.data);
+            isAuth && localStorage.setItem("lastSearchCompany",company);
             // isAuth && setPastSearches([{...pastSearches, id: {company}])
-            localStorage.setItem("lastSearchCompany",company);
         } catch (e) {
             console.error(e);
             toggleError(true);
         }
     }
-
-    useEffect(() => {
         if(company) {
-            fetchData();
+        void fetchData();
         }
-
     },[company]);
 
     return (

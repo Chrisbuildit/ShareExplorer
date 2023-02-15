@@ -1,21 +1,15 @@
 import React, {useContext, useEffect, useState} from 'react';
 import { AuthContext} from "../../context/AuthContext";
 import './Profile.css'
-import {useNavigate} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 function Profile({setCompanyHandler2}) {
-    const [lastSearch, setLastSearch] = useState("");
+    const [lastSearch, setLastSearch] = useState([]);
     const {isAuth} = useContext(AuthContext);
 
-    const navigate = useNavigate();
-
-    function handleClick() {
-        setCompanyHandler2(lastSearch);
-        navigate("/SearchResults")
-    }
-
     useEffect(() => {
-        setLastSearch(localStorage.getItem("lastSearchCompany"));
+        setLastSearch(JSON.parse(localStorage.getItem("lastSearchCompany")));
+        console.log(lastSearch);
     }, []);
 
     return (
@@ -26,7 +20,15 @@ function Profile({setCompanyHandler2}) {
                     {lastSearch ?
                     <>
                         <p>Your last search was for:</p>
-                        <button className="Profilebutton" onClick={handleClick}>{lastSearch}</button>
+                        <ul>
+                            {lastSearch.map((data) => {
+                            return <li key={data.id.company} className="ProfileList">
+                                <Link to={`/company-details/${data.id.company}`}>
+                                {data.id.company}
+                                </Link>
+                            </li>
+                            })}
+                        </ul>
                     </>
                     :<p>You have no recorded data.</p>}
                 </div>

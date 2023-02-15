@@ -4,17 +4,20 @@ import './SearchResults.css'
 import { TechnicalAnalysis } from "react-ts-tradingview-widget";
 import { SymbolOverview } from "react-ts-tradingview-widget";
 import {AuthContext} from "../../context/AuthContext";
-import { Link } from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 
 
-function SearchResults({company}) {
+function SearchResults() {
 
     const apiKey = 'Q577X5CIYDHZEQY7';
 
     const [companyOverview, setCompanyOverview] = useState({});
     const { isAuth } = useContext( AuthContext );
     const [error, toggleError] = useState(false)
-    // const [pastSearches, setPastSearches] = useState([{id: '',}])
+    const [pastSearches, setPastSearches] = useState([])
+
+    let {company} = useParams();
+
 
     useEffect(() => {
     async function fetchData() {
@@ -22,10 +25,8 @@ function SearchResults({company}) {
         try {
             const response = await
                 axios.get(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${company}&apikey=${apiKey}`);
-            console.log(response.data);
+            // console.log(response.data);
             setCompanyOverview(response.data);
-            isAuth && localStorage.setItem("lastSearchCompany",company);
-            // isAuth && setPastSearches([{...pastSearches, id: {company}])
         } catch (e) {
             console.error(e);
             toggleError(true);
@@ -36,35 +37,44 @@ function SearchResults({company}) {
         }
     },[company]);
 
+    useEffect(() => {
+            const timeout = setTimeout(() => {
+                isAuth && setPastSearches([{id: companyOverview.Symbol}]);}, 3000);
+            clearTimeout(timeout);
+            console.log(pastSearches);
+            isAuth && localStorage.setItem("lastSearchCompany",JSON.stringify(pastSearches));
+    },[companyOverview])
+
     return (
-        <div className='carpithians1 outer-container'>
+        <div className='carpithians outer-container'>
             <p> {company && !isAuth &&
                 <Link to="/SignIn" className="SaveOption">
                     Sign in for your latest search result to be automatically saved
                 </Link>}
             </p>
             <div className='inner-container'>
-                <div className="widgets"> {company &&
-                    <>
-                        <TechnicalAnalysis
-                            colorTheme="light"
-                            symbol={company}
-                            width="350"
-                            height="375"
-                            isTransparent="true"
-                        >
-                        </TechnicalAnalysis>
-                        <SymbolOverview
-                            symbols={company}
-                            lineWidth="1"
-                            width="350"
-                            height="370"
-                            widgetFontColor="black"
-                        >
-                        </SymbolOverview>
-                    </>
-                }
-                </div>
+                {/*<div className="widgets"> {company &&*/}
+                {/*    <>*/}
+                {/*        <TechnicalAnalysis*/}
+                {/*            colorTheme="light"*/}
+                {/*            symbol={company}*/}
+                {/*            width="350"*/}
+                {/*            height="375"*/}
+                {/*            isTransparent="true"*/}
+                {/*        >*/}
+                {/*        </TechnicalAnalysis>*/}
+                {/*        <SymbolOverview*/}
+                {/*            symbols={company}*/}
+                {/*            lineWidth="1"*/}
+                {/*            width="350"*/}
+                {/*            height="370"*/}
+                {/*            widgetFontColor="black"*/}
+                {/*            dateFormat="dd MMM 'yy"*/}
+                {/*        >*/}
+                {/*        </SymbolOverview>*/}
+                {/*    </>*/}
+                {/*}*/}
+                {/*</div>*/}
                 <div>{error &&
                     <>
                     <p>There was a miscommunication with the server in fetching your fundamental data.</p>
@@ -94,7 +104,7 @@ function SearchResults({company}) {
                             <p>&nbsp;</p>
                             <p>You have exceeded your number of searches.</p>
                             <p>&nbsp;</p>
-                            <p>You can only make 5 searches per minute.</p>
+                            <p>You can only make approximately 2 searches per minute.</p>
                             <p>&nbsp;</p>
                             <p>Make yourself a cup of coffee.</p>
                         </>

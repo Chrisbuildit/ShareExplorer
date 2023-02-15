@@ -2,9 +2,7 @@ import React from 'react';
 import './Home.css'
 
 
-function Home({company}) {
-
-
+function Home() {
 
     return (
         <div className='Glacier'>
@@ -12,7 +10,7 @@ function Home({company}) {
                 <>
                 <h3>Welcome on this website</h3>
                 <p>Here you can find the most important data for company shares while enjoying beautiful mountain scenery. </p>
-                <p>You will be provided with a trading advice on each share. Please note that you can only perform 5 searches per minute for now.</p>
+                <p>Please note that you can only perform, approximately 2 searches per minute, for now. We are working on expanding this.</p>
                 </>
             </section>
         </div>

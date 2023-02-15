@@ -13,7 +13,7 @@
     font-size: 1em;
 }
 
-.Profilebutton {
-    position: absolute;
+.ProfileList {
     top: 60px;
+    list-style: none;
 }

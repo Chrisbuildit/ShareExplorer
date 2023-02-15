@@ -20,7 +20,6 @@ function Nav({setCompanyHandler}) {
                     <ul>
                         <li>
                             <SearchBar
-                                setCompanyHandler={setCompanyHandler}
                                 className={ ( { isActive } ) => isActive ? "link--active" : "link--default" }
                             />
                         </li>

@@ -38,7 +38,7 @@ code {
 
 .carpithians1 {
   height: 100vh;
-  background-image: url('./assets/carpithians1.jpg');
+  background-image: url('assets/carpithians.jpg');
   background-size: cover;
 }
 

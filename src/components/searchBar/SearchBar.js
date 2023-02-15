@@ -5,27 +5,26 @@ import {useNavigate} from "react-router-dom";
 
 const apiKey = 'Q577X5CIYDHZEQY7';
 
-function SearchBar({setCompanyHandler}) {
+function SearchBar() {
     const [query, setQuery] = useState('');
     const [searchResults, setSearchResults] = useState([""])
     const navigate = useNavigate();
 
     function handleClick(e) {
         e.preventDefault();
-        setCompanyHandler(query);
-        setQuery("")
+        navigate(`/SearchResults/${query}`)
+        // setQuery("")
     }
 
     function navigation(e) {
             e.preventDefault();
-            setCompanyHandler("")
-            navigate("/SearchResults")
+            setQuery("")
         }
 
     function keyPressCheck(e) {
         if (e.keyCode === 13) {
-            setCompanyHandler(query);
-            setQuery("")
+            navigate(`/SearchResults/${query}`)
+            // setQuery("")
         }
     }
 
@@ -33,7 +32,7 @@ function SearchBar({setCompanyHandler}) {
         setQuery("")
     }
 
-    function value(e) {
+    function update(e) {
         setQuery(e.target.value);
         setSearchResults([""]);
     }
@@ -69,10 +68,9 @@ function SearchBar({setCompanyHandler}) {
                   type="text"
                   name="search"
                   value={query}
-                  onChange={value}
+                  onChange={update}
                   onClick={navigation}
-                  // Below doesn't work
-                  // onKeyUp={keyPressCheck}
+                  onKeyUp={keyPressCheck}
                   placeholder="Type a company name or symbol"
                   autoComplete="off"
               />
@@ -81,7 +79,7 @@ function SearchBar({setCompanyHandler}) {
                 : query && <b>Type a minimum of three characters</b>}</p>
               <ul>
                 {Object.keys(query).length > 2 && searchResults.map((post) => {
-                    return <li key={post.id}>
+                    return <li key={post.symbol}>
                         {post.symbol +", "+ post.name}
                     </li>
                 })}

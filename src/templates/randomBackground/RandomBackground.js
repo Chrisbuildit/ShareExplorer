@@ -3,7 +3,7 @@ import { ImageBackground } from "react-native";
 
 const noOfPic = 4;
 const imgMap = {
-    0: "carpithians1.jpg",
+    0: "carpithians.jpg",
     1: "Glacier.jpg",
     2: "mountain-top.jpg",
     3: "Mountains.jpg",

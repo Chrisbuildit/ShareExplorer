@@ -14,6 +14,7 @@ function CompanyDetails() {
     const [companyOverview, setCompanyOverview] = useState({});
     const {isAuth} = useContext(AuthContext);
     const [error, toggleError] = useState(false)
+    const [pastSearches, setPastSearches] = useState([])
     // Get the userId param from the URL.
     let {companyId} = useParams();
 
@@ -25,7 +26,8 @@ function CompanyDetails() {
                     axios.get(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${companyId}&apikey=${apiKey}`);
                 // console.log(response.data);
                 setCompanyOverview(response.data);
-                console.log(response);
+                // isAuth && setPastSearches([...pastSearches,{id: companyId}])
+                // isAuth && localStorage.setItem("lastSearchCompany",JSON.stringify(pastSearches));
             } catch (e) {
                 console.error(e);
                 toggleError(true);
@@ -35,7 +37,15 @@ function CompanyDetails() {
         if (companyId) {
             void fetchData();
         }
-    }, [companyId]);
+    }, []);
+
+    useEffect(() => {
+        // const timeout = setTimeout(() => {
+        isAuth && setPastSearches([...pastSearches,{id: companyId}])
+        //     }, 3000);
+        // clearTimeout(timeout);
+        isAuth && localStorage.setItem("lastSearchCompany",JSON.stringify(pastSearches));
+    },[companyOverview, companyId])
 
     return (
         <div className='carpithians outer-container'>
@@ -44,6 +54,7 @@ function CompanyDetails() {
                     Sign in for your latest search result to be automatically saved
                 </Link>}
             </p>
+            {/*{console.log(pastSearches)}*/}
             <div className='inner-container'>
                {/* <div className="widgets"> {companyId &&
                     <>

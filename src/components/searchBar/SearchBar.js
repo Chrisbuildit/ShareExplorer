@@ -12,18 +12,19 @@ function SearchBar() {
 
     function handleClick(e) {
         e.preventDefault();
-        navigate(`/SearchResults/${query}`)
-        // setQuery("")
+        navigate(`/company-details/${query}`)
+        setQuery("")
     }
 
     function navigation(e) {
             e.preventDefault();
             setQuery("")
+            navigate("/SearchResults")
         }
 
     function keyPressCheck(e) {
         if (e.keyCode === 13) {
-            navigate(`/SearchResults/${query}`)
+            navigate(`/company-details/${query}`)
             // setQuery("")
         }
     }

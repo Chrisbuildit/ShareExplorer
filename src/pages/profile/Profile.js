@@ -3,13 +3,13 @@ import { AuthContext} from "../../context/AuthContext";
 import './Profile.css'
 import {Link} from "react-router-dom";
 
-function Profile({setCompanyHandler2}) {
+function Profile() {
     const [lastSearch, setLastSearch] = useState([]);
     const {isAuth} = useContext(AuthContext);
 
     useEffect(() => {
         setLastSearch(JSON.parse(localStorage.getItem("lastSearchCompany")));
-        console.log(lastSearch);
+
     }, []);
 
     return (
@@ -22,9 +22,9 @@ function Profile({setCompanyHandler2}) {
                         <p>Your last search was for:</p>
                         <ul>
                             {lastSearch.map((data) => {
-                            return <li key={data.id.company} className="ProfileList">
-                                <Link to={`/company-details/${data.id.company}`}>
-                                {data.id.company}
+                            return <li key={data.id} className="ProfileList">
+                                <Link to={`/company-details/${data.id}`}>
+                                {data.id}
                                 </Link>
                             </li>
                             })}

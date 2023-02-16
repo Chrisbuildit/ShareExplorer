@@ -53,7 +53,7 @@ function SignUp() {
                     <input type="checkbox" checked={ check } onChange={() => toggleCheck(!check)}/>
                 </section>
                 {/*<InputField label="Role:" type="text" value={ role } setState={setRole}/>*/}
-                {error && <p className="error">This username exists already. Please try another username</p>}
+                {error && <p className="error">There is already an account for the email address. Go to the Sign-up page</p>}
                 <button type="submit">Sign Up</button>
             </form>
         </main>

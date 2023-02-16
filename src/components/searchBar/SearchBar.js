@@ -10,22 +10,20 @@ function SearchBar() {
     const [searchResults, setSearchResults] = useState([""])
     const navigate = useNavigate();
 
-    function handleClick(e) {
-        e.preventDefault();
-        navigate(`/company-details/${query}`)
+    function handleClick() {
+        navigate(`/searchResults/${query}`)
         setQuery("")
     }
 
-    function navigation(e) {
-            e.preventDefault();
+    function navigation() {
             setQuery("")
-            navigate("/SearchResults")
+            // navigate("/SearchPage")
         }
 
     function keyPressCheck(e) {
         if (e.keyCode === 13) {
-            navigate(`/company-details/${query}`)
-            // setQuery("")
+            navigate(`/searchResults/${query}`)
+            setQuery("")
         }
     }
 

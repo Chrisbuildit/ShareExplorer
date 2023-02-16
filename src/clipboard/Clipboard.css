@@ -1,33 +1,94 @@
-NAV -bar alternative
+/*SearchResults*/
 
-div {
-    text-align: center;
-    position: relative;
-    background-image: url('./assets/mountain-top.jpg');
-    background-size: cover;
-}
-span {
-    display: flex;
-    list-style: none;
-}
+/*.outer-container {*/
+/*    display: flex;*/
+/*    flex-direction: column-reverse;*/
+/*    justify-content: flex-end;*/
+/*}*/
 
-button1 {
-    left: 50px;
-    margin: 12px 0;
-    position: relative;
-    padding: 8px;
-    background-color: darkblue;
-    color: white;
-    border-radius: 5px;
+/*.inner-container {*/
+/*    display: flex;*/
+/*    flex-direction: row-reverse;*/
+/*    justify-content: space-between;*/
+/*    padding-inline: 33px;*/
+/*    padding-top: 10px;*/
+/*}*/
 
-}
+/*.SaveOption {*/
+/*    color: blue;*/
+/*    margin-left: 85px;*/
+/*}*/
 
-button2 {
-    right: 50px;
-    margin: 12px 0;
-    position: absolute;
-    padding: 8px ;
-    background-color: gray;
-    border-radius: 5px;
+/*.widgets {*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    justify-content: flex-start;*/
+/*    gap: 3em;*/
+/*}*/
 
-}
+/*h2  {*/
+/*    line-height: 0;*/
+/*    font-size: 1.2em;*/
+/*}*/
+
+/*h3 {*/
+/*    font-size: 0.85em;*/
+/*    line-height: 0;*/
+/*}*/
+
+
+/*p, label {*/
+/*    font-size: 0.75em;*/
+/*    line-height: 0;*/
+/*    font-family: "Roboto", monospace;*/
+/*}*/
+
+/*span  {*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    justify-content: space-between;*/
+/*    position: relative;*/
+/*    width: fit-content;*/
+/*    line-height: 0;*/
+/*}*/
+
+/*section {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    justify-content: space-between;*/
+/*    padding-right: 15px;*/
+/*}*/
+
+/*NAV -bar alternative*/
+
+/*div {*/
+/*    text-align: center;*/
+/*    position: relative;*/
+/*    background-image: url('./assets/mountain-top.jpg');*/
+/*    background-size: cover;*/
+/*}*/
+/*span {*/
+/*    display: flex;*/
+/*    list-style: none;*/
+/*}*/
+
+/*button1 {*/
+/*    left: 50px;*/
+/*    margin: 12px 0;*/
+/*    position: relative;*/
+/*    padding: 8px;*/
+/*    background-color: darkblue;*/
+/*    color: white;*/
+/*    border-radius: 5px;*/
+
+/*}*/
+
+/*button2 {*/
+/*    right: 50px;*/
+/*    margin: 12px 0;*/
+/*    position: absolute;*/
+/*    padding: 8px ;*/
+/*    background-color: gray;*/
+/*    border-radius: 5px;*/
+
+/*}*/

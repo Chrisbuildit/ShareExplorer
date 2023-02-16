@@ -15,7 +15,7 @@
 //
 //     function handleClick() {
 //         setCompanyHandler(selectedValue);
-//         navigate("/SearchResults")
+//         navigate("/SearchPage")
 //     }
 //
 //     function keyPressCheck(e) {

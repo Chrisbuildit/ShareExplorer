@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Routes, Route } from "react-router-dom";
 import './App.css'
 import Home from './pages/home/Home'
@@ -14,15 +14,15 @@ function App() {
 
         return (
         <>
-                    <NavBar />
-                    <Routes>
-                            <Route path="/" element={ <Home /> }/>
-                            <Route path="/SearchResults" element={ <SearchResults /> }/>
-                            <Route path="/company-details/:companyId" element={ <CompanyDetails /> }/>
-                            <Route path="/Profile" element={ <Profile /> }/>
-                            <Route path="/SignUp" element={ <SignUp/> }/>
-                            <Route path="/SignIn" element={ <SignIn/> }/>
-                    </Routes>
+            <NavBar />
+            <Routes>
+                    <Route path="/" element={ <Home /> }/>
+                    <Route path="/searchResults/:companyId" element={ <SearchResults /> }/>
+                    <Route path="/company-details/:companyId" element={ <CompanyDetails /> }/>
+                    <Route path="/profile" element={ <Profile /> }/>
+                    <Route path="/signUp" element={ <SignUp/> }/>
+                    <Route path="/signIn" element={ <SignIn/> }/>
+            </Routes>
         </>
     )
 }

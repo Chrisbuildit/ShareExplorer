@@ -19,7 +19,7 @@ will include a stock screener as well as the ability to save company data for fu
 
 ## Project screenshot
 
-![SearchResults page](src/assets/Screenshot.png)
+![SearchPage page](src/assets/Screenshot.png)
 
 ## Installation and setup instructions
 

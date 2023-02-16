@@ -23,7 +23,7 @@ function Profile() {
                         <ul>
                             {lastSearch.map((data) => {
                             return <li key={data.id} className="ProfileList">
-                                <Link to={`/company-details/${data.id}`}>
+                                <Link to={`/SearchResults/${data.id}`}>
                                 {data.id}
                                 </Link>
                             </li>

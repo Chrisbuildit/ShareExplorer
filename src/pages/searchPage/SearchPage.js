@@ -1,6 +1,6 @@
 import React from 'react'
 import carpithians from "../../assets/carpithians.jpg";
-import './SearchResults.css'
+import '../searchResults/SearchResults.css'
 
 function SearchPage() {
 

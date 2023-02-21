@@ -1,6 +1,33 @@
+import {useState} from "react";
 
 
 function Clipboard() {
+
+    // const [companyOverview, setCompanyOverview] = useState({});
+    // const [error, toggleError] = useState(false)
+    // const [check1, setCheck1] = useState([])
+    // const [check2, setCheck2] = useState(false)
+    // const [pastSearches, setPastSearches] = useState([])
+    //
+    // function addValues() {
+    //     // Check1 is data in localstorage.
+    //     if (Array.isArray(check1) && check1.length) {
+    //         setPastSearches(check1);
+    //         setPastSearches([...pastSearches, companyOverview]);
+    //         console.log('RestValues')
+    //     }
+    //     // && - To prevent companies with no data to be added to local storage
+    //     else if(Object.keys(companyOverview).length > 0 && check2 === true) {
+    //         setPastSearches([...pastSearches, companyOverview]);
+    //         setCheck2(false)
+    //         console.log('FirstValue')
+    //     }
+    //     // To capture the first run where there is no data
+    //     else {
+    //         setCheck2(true);
+    //         console.log('NoValue')
+    //     }
+    // }
 
     // function SearchResults() {
 

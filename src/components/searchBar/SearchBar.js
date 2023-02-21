@@ -9,15 +9,20 @@ function SearchBar() {
     const [query, setQuery] = useState('');
     const [searchResults, setSearchResults] = useState([""])
     const navigate = useNavigate();
+    const [pastSearches, setPastSearches] = useState([])
 
     function handleClick() {
+        // setPastSearches(JSON.parse(localStorage.getItem("lastSearchCompany")));
+        setPastSearches([...pastSearches,{id: query}]);
         navigate(`/searchResults/${query}`)
         setQuery("")
     }
 
+    // useEffect(()=> {localStorage.setItem("lastSearchCompany",JSON.stringify(pastSearches))},[pastSearches]);
+
     function navigation() {
             setQuery("")
-            // navigate("/SearchPage")
+            navigate("/SearchPage")
         }
 
     function keyPressCheck(e) {
@@ -61,6 +66,7 @@ function SearchBar() {
 
     return (
         <>
+            {/*{console.log(pastSearches)}*/}
     <form className="searchbar" onMouseLeave={abort}>
         <section>
               <input

@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useContext} from 'react';
+import React, {useEffect, useState, useContext, useRef} from 'react';
 import axios from 'axios';
 import {useParams} from "react-router-dom";
 import './SearchResults.css'
@@ -11,10 +11,16 @@ function SearchResults() {
 
     const [companyOverview, setCompanyOverview] = useState({});
     const [error, toggleError] = useState(false)
-    const [pastSearches, setPastSearches] = useState([])
+    const keyName = "lastSearchCompany"
+    const [pastSearches, setPastSearches] = useState(() => {
+        const parsedItem = JSON.parse(localStorage.getItem(keyName));
+        return parsedItem || []
+    })
+
     const {isAuth} = useContext(AuthContext)
     // Get the userId param from the URL.
     let {companyId} = useParams();
+    const isFirstRender = useRef(true);
 
     useEffect(() => {
         async function fetchData() {
@@ -22,27 +28,36 @@ function SearchResults() {
             try {
                 const response = await
                     axios.get(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${companyId}&apikey=${apiKey}`);
+                response.data.Date = Date.now();
                 setCompanyOverview(response.data);
-                isAuth && setPastSearches(JSON.parse(localStorage.getItem("lastSearchCompany")));
-                isAuth && setPastSearches([...pastSearches,{id: companyId}])
-                // isAuth && localStorage.setItem("lastSearchCompany",JSON.stringify(pastSearches));
+                console.log(companyOverview);
             } catch (e) {
                 console.error(e);
                 toggleError(true);
             }
         }
-
         if (companyId) {
-            void fetchData();
-        }
-    }, []);
+            void fetchData();}
+    }, [])
 
     useEffect(() => {
-        isAuth && localStorage.setItem("lastSearchCompany",JSON.stringify(pastSearches));
+        if (isFirstRender.current) {
+            isFirstRender.current = false;
+            return;
+        }
+        if(companyOverview.Symbol && pastSearches.length < 20) {
+            isAuth && setPastSearches([...pastSearches, companyOverview]);
+        }
     },[companyOverview])
+
+    useEffect(() => {
+            localStorage.setItem(keyName, JSON.stringify(pastSearches));
+            console.log('setItem')
+    },[pastSearches])
 
     return (
         <>
+        {/*{console.log(check1)}*/}
         {console.log(pastSearches)}
         <DataLayout
             companyOverview={companyOverview}

@@ -9,6 +9,7 @@ function Profile() {
 
     useEffect(() => {
         setLastSearch(JSON.parse(localStorage.getItem("lastSearchCompany")));
+        console.log(lastSearch);
 
     }, []);
 
@@ -22,9 +23,9 @@ function Profile() {
                         <p>Your last search was for:</p>
                         <ul>
                             {lastSearch.map((data) => {
-                            return <li key={data.id} className="ProfileList">
-                                <Link to={`/SearchResults/${data.id}`}>
-                                {data.id}
+                            return <li key={Math.floor(Math.random() * 100)} className="ProfileList">
+                                <Link to={`/company-details/${data.Symbol}`}>
+                                {data.Symbol}
                                 </Link>
                             </li>
                             })}

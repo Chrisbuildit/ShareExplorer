@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import { Routes, Route } from "react-router-dom";
 import './App.css'
 import Home from './pages/home/Home'
@@ -8,9 +8,11 @@ import NavBar from "./components/navbar/NavBar";
 import SearchResults from "./pages/searchResults/SearchResults";
 import Profile from "./pages/profile/Profile";
 import CompanyDetails from "./pages/company-details/company-details";
+import SearchPage from "./pages/searchPage/SearchPage";
 
 function App() {
 
+        const [pastSearches, setPastSearches] = useState();
 
         return (
         <>
@@ -22,6 +24,7 @@ function App() {
                     <Route path="/profile" element={ <Profile /> }/>
                     <Route path="/signUp" element={ <SignUp/> }/>
                     <Route path="/signIn" element={ <SignIn/> }/>
+                    <Route path="/searchPage" element={ <SearchPage/> }/>
             </Routes>
         </>
     )

@@ -17,7 +17,7 @@ function SearchResults() {
         return parsedItem || []
     })
 
-    const {isAuth} = useContext(AuthContext)
+    const {isAuth, user} = useContext(AuthContext);
     // Get the userId param from the URL.
     let {companyId} = useParams();
     const isFirstRender = useRef(true);
@@ -28,9 +28,11 @@ function SearchResults() {
             try {
                 const response = await
                     axios.get(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${companyId}&apikey=${apiKey}`);
+                if(user) {
                 response.data.Date = Date.now();
+                response.data.User = user.id;}
                 setCompanyOverview(response.data);
-                console.log(companyOverview);
+                // console.log(companyOverview);
             } catch (e) {
                 console.error(e);
                 toggleError(true);
@@ -45,7 +47,12 @@ function SearchResults() {
             isFirstRender.current = false;
             return;
         }
-        if(companyOverview.Symbol && pastSearches.length < 20) {
+        if(companyOverview.Symbol)
+            if(pastSearches.length < 20) {
+            isAuth && setPastSearches([...pastSearches, companyOverview]);
+        }
+            else {
+            setPastSearches(pastSearches.shift());
             isAuth && setPastSearches([...pastSearches, companyOverview]);
         }
     },[companyOverview])
@@ -56,16 +63,29 @@ function SearchResults() {
     },[pastSearches])
 
     return (
-        <>
-        {/*{console.log(check1)}*/}
-        {console.log(pastSearches)}
-        <DataLayout
-            companyOverview={companyOverview}
-            isAuth={isAuth}
-            error={error}
-            companyId={companyId}
-            />
-        </>
+        <div className='carpithians'>
+        {companyOverview.Name ?
+            <DataLayout
+                companyOverview={companyOverview}
+                isAuth={isAuth}
+                error={error}
+                companyId={companyId}
+                />
+            : companyId &&
+                <>
+                <p>&nbsp;</p>
+                <p>Unfortunately we have no data for this company.</p>
+                <p>&nbsp;</p>
+                <p>You can click on the below link for data from Tradingview.</p>
+                <p>&nbsp;</p>
+                <p><a href={`https://www.tradingview.com/symbols/${companyId}/`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                >
+                    Link</a></p>
+            </>
+            }
+        </div>
     );
 }
 

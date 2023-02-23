@@ -29,6 +29,9 @@ Clone down this repository. You will need node and npm installed globally on you
 
 npm install
 
+**APIkey**
+Have to be added. Is: Q577X5CIYDHZEQY7.
+
 **To Run Test Suite:**
 
 npm test

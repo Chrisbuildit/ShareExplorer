@@ -4,17 +4,9 @@
     justify-content: flex-end;
 }
 
-.inner-container {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-between;
-    /*padding-inline: 33px;*/
-    padding-top: 10px;
-}
-
 .SaveOption {
     color: blue;
-    margin-left: 85px;
+    margin-left: 60px;
 }
 
 .widgets {

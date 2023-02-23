@@ -3,8 +3,6 @@ import './SearchBar.css';
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 
-const apiKey = 'Q577X5CIYDHZEQY7';
-
 function SearchBar() {
     const [query, setQuery] = useState('');
     const [searchResults, setSearchResults] = useState([""])
@@ -47,7 +45,7 @@ function SearchBar() {
             console.log("FETCHING RESULTS");
             const result = await
                 axios.get(
-                    `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${query}&apikey=${apiKey}`
+                    `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${query}&apikey=${process.env.REACT_APP_API_KEY}`
                 )
                     const hintArray = []
                     result.data.bestMatches.map((a) => {

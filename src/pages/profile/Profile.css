@@ -1,19 +1,23 @@
-.Profile {
+.Profile-outer {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     position: relative;
-    align-items: center;
-    margin-top: 0;
-    top: 40px;
-    text-align: left;
+    top: 25px;
+    margin-left: 640px;
 }
 
-.Profile h3 {
+.Profile-inner {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.Profile-inner h3 {
     font-size: 1em;
 }
 
 .ProfileList {
-    top: 60px;
     list-style: none;
+    margin-left: -40px;
+    margin-top: 0;
 }

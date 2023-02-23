@@ -15,39 +15,18 @@ function DataLayout({companyOverview, error, companyId, isAuth}) {
                 </Link>}
             </p>
             <div className='inner-container'>
-                <div className="widgets"> {companyId &&
-                    <>
-                        <TechnicalAnalysis
-                            colorTheme="light"
-                            symbol={companyId}
-                            width="350"
-                            height="375"
-                            isTransparent="true"
-                        >
-                        </TechnicalAnalysis>
-                        <SymbolOverview
-                            symbols={companyId}
-                            lineWidth="1"
-                            width="350"
-                            height="370"
-                            widgetFontColor="black"
-                            dateFormat="dd MMM 'yy"
-                        >
-                        </SymbolOverview>
-                    </>
-                }
-                </div>
                 <div>{error &&
                     <>
                         <p>There was a miscommunication with the server in fetching your fundamental data.</p>
                         <p>&nbsp;</p>
                         <p>Please try again.</p>
                     </>
-                }</div>
-                <>
+                    }
+                </div>
+                <div>
                     <h2>Fundamental data:</h2>
-                        {companyOverview &&
-                            <span>
+                    {companyOverview &&
+                    <span>
                         <section>
                             <h3><u>General:</u></h3>
                             <p><b>Name</b>: {companyOverview.Name}</p>
@@ -84,7 +63,7 @@ function DataLayout({companyOverview, error, companyId, isAuth}) {
                         </section>
                     </span>
                     }
-                </>
+                </div>
             </div>
         </div>
     );

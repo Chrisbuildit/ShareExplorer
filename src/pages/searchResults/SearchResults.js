@@ -4,17 +4,16 @@ import {useParams} from "react-router-dom";
 import './SearchResults.css'
 import DataLayout from "../../components/dataLayout/DataLayout";
 import {AuthContext} from "../../context/AuthContext";
+import {SymbolOverview, TechnicalAnalysis} from "react-ts-tradingview-widget";
 
 function SearchResults() {
-
-    const apiKey = 'Q577X5CIYDHZEQY7';
 
     const [companyOverview, setCompanyOverview] = useState({});
     const [error, toggleError] = useState(false)
     const keyName = "lastSearchCompany"
     const [pastSearches, setPastSearches] = useState(() => {
         const parsedItem = JSON.parse(localStorage.getItem(keyName));
-        return parsedItem || []
+        return [parsedItem] || []
     })
 
     const {isAuth, user} = useContext(AuthContext);
@@ -23,16 +22,19 @@ function SearchResults() {
     const isFirstRender = useRef(true);
 
     useEffect(() => {
+        if (isFirstRender.current) {
+            isFirstRender.current = false;
+            return;
+        }
         async function fetchData() {
             toggleError(false);
             try {
                 const response = await
-                    axios.get(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${companyId}&apikey=${apiKey}`);
+                    axios.get(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${companyId}&apikey=${process.env.REACT_APP_API_KEY}`);
                 if(user) {
                 response.data.Date = Date.now();
                 response.data.User = user.id;}
                 setCompanyOverview(response.data);
-                // console.log(companyOverview);
             } catch (e) {
                 console.error(e);
                 toggleError(true);
@@ -47,13 +49,13 @@ function SearchResults() {
             isFirstRender.current = false;
             return;
         }
-        if(companyOverview.Symbol)
+        if(companyOverview.Symbol && isAuth)
             if(pastSearches.length < 20) {
-            isAuth && setPastSearches([...pastSearches, companyOverview]);
+            setPastSearches([...pastSearches, companyOverview]);
         }
-            else {
+            else {pastSearches &&
             setPastSearches(pastSearches.shift());
-            isAuth && setPastSearches([...pastSearches, companyOverview]);
+            setPastSearches([...pastSearches, companyOverview]);
         }
     },[companyOverview])
 
@@ -63,7 +65,29 @@ function SearchResults() {
     },[pastSearches])
 
     return (
-        <div className='carpithians'>
+        <div className='carpithians inner-container'>
+            {/*<div className="widgets"> {companyId &&*/}
+            {/*    <>*/}
+            {/*        <TechnicalAnalysis*/}
+            {/*            colorTheme="light"*/}
+            {/*            symbol={companyId}*/}
+            {/*            width="350"*/}
+            {/*            height="375"*/}
+            {/*            isTransparent="true"*/}
+            {/*        >*/}
+            {/*        </TechnicalAnalysis>*/}
+            {/*        <SymbolOverview*/}
+            {/*            symbols={companyId}*/}
+            {/*            lineWidth="1"*/}
+            {/*            width="300"*/}
+            {/*            height="370"*/}
+            {/*            widgetFontColor="black"*/}
+            {/*            dateFormat="dd MMM 'yy"*/}
+            {/*        >*/}
+            {/*        </SymbolOverview>*/}
+            {/*    </>*/}
+            {/*}*/}
+            {/*</div>*/}
         {companyOverview.Name ?
             <DataLayout
                 companyOverview={companyOverview}
@@ -72,7 +96,7 @@ function SearchResults() {
                 companyId={companyId}
                 />
             : companyId &&
-                <>
+                <div>
                 <p>&nbsp;</p>
                 <p>Unfortunately we have no data for this company.</p>
                 <p>&nbsp;</p>
@@ -83,7 +107,7 @@ function SearchResults() {
                       rel="noopener noreferrer"
                 >
                     Link</a></p>
-            </>
+            </div>
             }
         </div>
     );

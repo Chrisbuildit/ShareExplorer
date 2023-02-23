@@ -6,6 +6,7 @@ import createDateString from "../../helpers/createDateString/CreateDateString";
 
 function Profile() {
     const [lastSearch, setLastSearch] = useState([]);
+    const [data, setData] = useState([]);
     const {isAuth, user} = useContext(AuthContext);
 
     useEffect(() => {
@@ -14,25 +15,29 @@ function Profile() {
 
     }, []);
 
-    const overview = lastSearch.reverse()
-
-    const currentPost = overview.filter((post) => {
-        if(user) {
-        return post.User === user.id;
-    }});
-    console.log(currentPost)
+    useEffect(() => {
+        if(lastSearch.length) {
+        const overview = lastSearch.reverse();
+        setData(overview);
+        const currentPost = lastSearch.filter((post) => {
+            if(user) {
+                return post.User === user.id;
+            }})
+        setData(currentPost)};
+    },[lastSearch]);
 
     return (
         <div className="Sunny-mountain">
+            <div className="Profile-outer">
             {isAuth ?
-                <div className="Profile">
-                    <h3>Welcome back!</h3>
+                <div className="Profile-inner">
+                    <h3>Welcome back {user.username}!</h3>
                     {lastSearch ?
                     <>
-                        <p>Here you can look back on last search results:</p>
-                        <ul>
-                            {currentPost.map((data) => {
-                            return <li key={Math.floor(Math.random() * 100)} className="ProfileList">
+                        <p>Here you can find historical data on your last 20 searches :</p>
+                        <ul className="ProfileList">
+                            {data.map((data) => {
+                            return <li key={Math.floor(Math.random() * 100)}>
                                 <Link to={`/company-details/${data.Date}`}>
                                    <span>
                                         <p>{data.Name};&nbsp;</p>
@@ -46,8 +51,9 @@ function Profile() {
                     :<p>You have no recorded data.</p>}
                 </div>
                 :
-                <h3 className="Profile">You are not signed in.</h3>
+                <h3>You need to sign in first.</h3>
             }
+            </div>
         </div>
     );
 }

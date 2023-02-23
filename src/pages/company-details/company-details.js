@@ -10,8 +10,6 @@ function CompanyDetails() {
     let { dateNow } = useParams();
     const [lastSearch, setLastSearch] = useState([]);
     const {user} = useContext(AuthContext);
-    // const {isAuth} = useContext(AuthContext)
-    // const [error, toggleError] = useState(false)
 
     useEffect(() => {
         setLastSearch(JSON.parse(localStorage.getItem("lastSearchCompany")));
@@ -29,8 +27,8 @@ function CompanyDetails() {
     console.log(dateNow);
 
     return (
-        <div className='carpithians'>
-            <h2>The results are from {currentPost && createDateString(currentPost.Date)}</h2>
+        <div className='carpithians company-details'>
+            <h2 className='heading'>The results are from {currentPost && createDateString(currentPost.Date)}</h2>
             <DataLayout
                 companyOverview={currentPost}
                 isAuth={true}

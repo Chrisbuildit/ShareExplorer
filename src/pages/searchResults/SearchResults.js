@@ -100,7 +100,7 @@ function SearchResults() {
                 companyId={companyId}
                 />
             : companyId &&
-                <div>
+                <div className="Nodata">
                 <p>&nbsp;</p>
                 <p>Unfortunately we have no data for this company.</p>
                 <p>&nbsp;</p>

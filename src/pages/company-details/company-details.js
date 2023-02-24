@@ -28,7 +28,7 @@ function CompanyDetails() {
 
     return (
         <div className='carpithians company-details'>
-            <h2 className='heading'>The results are from {currentPost && createDateString(currentPost.Date)}</h2>
+            <p className='heading'>The results are from {currentPost && createDateString(currentPost.Date)}</p>
             <DataLayout
                 companyOverview={currentPost}
                 isAuth={true}

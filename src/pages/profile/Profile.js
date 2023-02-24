@@ -11,24 +11,20 @@ function Profile() {
 
     useEffect(() => {
         setLastSearch(JSON.parse(localStorage.getItem("lastSearchCompany")));
-
     }, []);
 
     useEffect(() => {
         if(user && lastSearch) {
         const overview = lastSearch.reverse();
-            console.log(overview);
         setData(overview)
         const currentPost = overview.filter((post) => {
                 return post.User === user.id;
             })
-            console.log(user.id);
         setData(currentPost)}
     },[lastSearch]);
 
     return (
         <div className="Sunny-mountain">
-            {/*{console.log(lastSearch)}*/}
             <div className="Profile-outer">
             {isAuth ?
                 <div className="Profile-inner">

@@ -19,12 +19,6 @@
     margin-left: 60px;
 }
 
-.widgets {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    gap: 3em;
-}
 
 h2  {
     line-height: 0;

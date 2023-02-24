@@ -1,6 +1,4 @@
 import React from 'react';
-import {TechnicalAnalysis} from "react-ts-tradingview-widget";
-import {SymbolOverview} from "react-ts-tradingview-widget";
 import './DataLayout.css'
 import {Link} from "react-router-dom";
 

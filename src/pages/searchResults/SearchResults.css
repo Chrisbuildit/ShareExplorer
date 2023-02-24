@@ -1,3 +1,16 @@
+.SearchResults {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
 .Nodata {
     padding-left: 40px;
+}
+
+.widgets {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 3em;
 }

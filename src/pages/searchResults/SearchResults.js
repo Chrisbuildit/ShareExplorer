@@ -10,22 +10,26 @@ function SearchResults() {
 
     const [companyOverview, setCompanyOverview] = useState({});
     const [error, toggleError] = useState(false)
-    const keyName = "lastSearchCompany"
     const [pastSearches, setPastSearches] = useState(() => {
-        const parsedItem = JSON.parse(localStorage.getItem(keyName));
+        const parsedItem = JSON.parse(localStorage.getItem("lastSearchCompany"));
         return parsedItem || []
     })
 
     const {isAuth, user} = useContext(AuthContext);
     // Get the userId param from the URL.
     let {companyId} = useParams();
-    const isFirstRender = useRef(true);
+    // const isFirstRender = useRef(true);
+
+    // const widgetId = (e) => {
+    //     e.preventDefault();
+    //     return companyOverview.Symbol;
+    // }
 
     useEffect(() => {
-        if (isFirstRender.current) {
-            isFirstRender.current = false;
-            return;
-        }
+        // if (isFirstRender.current) {
+        //     isFirstRender.current = false;
+        //     return;
+        // }
         async function fetchData() {
             toggleError(false);
             try {
@@ -33,23 +37,20 @@ function SearchResults() {
                     axios.get(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${companyId}&apikey=${process.env.REACT_APP_API_KEY}`);
                 if(user) {
                 response.data.Date = Date.now();
-                response.data.User = user.id;}
+                response.data.User = user.id;
+                }
                 setCompanyOverview(response.data);
-                console.log(pastSearches);
             } catch (e) {
                 console.error(e);
                 toggleError(true);
             }
         }
         if (companyId) {
-            void fetchData();}
+            void fetchData();
+        }
     }, [])
 
     useEffect(() => {
-        if (isFirstRender.current) {
-            isFirstRender.current = false;
-            return;
-        }
         if(companyOverview.Symbol && isAuth)
             if(pastSearches.length < 20) {
             setPastSearches([...pastSearches, companyOverview]);
@@ -63,35 +64,35 @@ function SearchResults() {
     },[companyOverview])
 
     useEffect(() => {
-            localStorage.setItem(keyName, JSON.stringify(pastSearches));
+            localStorage.setItem("lastSearchCompany", JSON.stringify(pastSearches));
             console.log('setItem')
     },[pastSearches])
 
     return (
-        <div className='carpithians'>
-            {/*{console.log(pastSearches)}*/}
-            {/*<div className="widgets"> {companyId &&*/}
-            {/*    <>*/}
-            {/*        <TechnicalAnalysis*/}
-            {/*            colorTheme="light"*/}
-            {/*            symbol={companyId}*/}
-            {/*            width="350"*/}
-            {/*            height="375"*/}
-            {/*            isTransparent="true"*/}
-            {/*        >*/}
-            {/*        </TechnicalAnalysis>*/}
-            {/*        <SymbolOverview*/}
-            {/*            symbols={companyId}*/}
-            {/*            lineWidth="1"*/}
-            {/*            width="300"*/}
-            {/*            height="370"*/}
-            {/*            widgetFontColor="black"*/}
-            {/*            dateFormat="dd MMM 'yy"*/}
-            {/*        >*/}
-            {/*        </SymbolOverview>*/}
-            {/*    </>*/}
-            {/*}*/}
-            {/*</div>*/}
+        <div className='carpithians SearchResults'>
+            <div className="widgets"> {companyOverview &&
+                <>
+                    {/*<SymbolOverview*/}
+                    {/*    symbols={[*/}
+                    {/*        [companyId]*/}
+                    {/*    ]}*/}
+                    {/*    lineWidth="1"*/}
+                    {/*    width="300"*/}
+                    {/*    height="370"*/}
+                    {/*    widgetFontColor="black"*/}
+                    {/*    dateFormat="dd MMM 'yy"*/}
+                    {/*/>*/}
+                    {/*<TechnicalAnalysis*/}
+                    {/*    colorTheme="light"*/}
+                    {/*    symbol={companyId}*/}
+                    {/*    width="350"*/}
+                    {/*    height="375"*/}
+                    {/*    isTransparent="true"*/}
+                    {/*>*/}
+                    {/*</TechnicalAnalysis>*/}
+                </>
+            }
+            </div>
         {companyOverview.Name ?
             <DataLayout
                 companyOverview={companyOverview}

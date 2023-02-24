@@ -13,7 +13,7 @@ function SearchResults() {
     const keyName = "lastSearchCompany"
     const [pastSearches, setPastSearches] = useState(() => {
         const parsedItem = JSON.parse(localStorage.getItem(keyName));
-        return [parsedItem] || []
+        return parsedItem || []
     })
 
     const {isAuth, user} = useContext(AuthContext);
@@ -35,6 +35,7 @@ function SearchResults() {
                 response.data.Date = Date.now();
                 response.data.User = user.id;}
                 setCompanyOverview(response.data);
+                console.log(pastSearches);
             } catch (e) {
                 console.error(e);
                 toggleError(true);
@@ -52,10 +53,12 @@ function SearchResults() {
         if(companyOverview.Symbol && isAuth)
             if(pastSearches.length < 20) {
             setPastSearches([...pastSearches, companyOverview]);
+                console.log('<20')
         }
             else {pastSearches &&
             setPastSearches(pastSearches.shift());
             setPastSearches([...pastSearches, companyOverview]);
+                console.log('>20')
         }
     },[companyOverview])
 
@@ -65,7 +68,8 @@ function SearchResults() {
     },[pastSearches])
 
     return (
-        <div className='carpithians inner-container'>
+        <div className='carpithians'>
+            {/*{console.log(pastSearches)}*/}
             {/*<div className="widgets"> {companyId &&*/}
             {/*    <>*/}
             {/*        <TechnicalAnalysis*/}

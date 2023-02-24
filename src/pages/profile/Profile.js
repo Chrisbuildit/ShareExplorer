@@ -11,44 +11,47 @@ function Profile() {
 
     useEffect(() => {
         setLastSearch(JSON.parse(localStorage.getItem("lastSearchCompany")));
-        console.log(lastSearch);
 
     }, []);
 
     useEffect(() => {
-        if(lastSearch.length) {
+        if(user && lastSearch) {
         const overview = lastSearch.reverse();
-        setData(overview);
-        const currentPost = lastSearch.filter((post) => {
-            if(user) {
+            console.log(overview);
+        setData(overview)
+        const currentPost = overview.filter((post) => {
                 return post.User === user.id;
-            }})
-        setData(currentPost)};
+            })
+            console.log(user.id);
+        setData(currentPost)}
     },[lastSearch]);
 
     return (
         <div className="Sunny-mountain">
+            {/*{console.log(lastSearch)}*/}
             <div className="Profile-outer">
             {isAuth ?
                 <div className="Profile-inner">
-                    <h3>Welcome back {user.username}!</h3>
                     {lastSearch ?
                     <>
+                        <h3>Welcome back {user.username}!</h3>
                         <p>Here you can find historical data on your last 20 searches :</p>
                         <ul className="ProfileList">
                             {data.map((data) => {
                             return <li key={Math.floor(Math.random() * 100)}>
                                 <Link to={`/company-details/${data.Date}`}>
-                                   <span>
-                                        <p>{data.Name};&nbsp;</p>
-                                        <p>{createDateString(data.Date)}</p>
-                                   </span>
+                                   <p>{data.Name}</p>
                                 </Link>
+                                <p>{createDateString(data.Date)}</p>
                             </li>
                             })}
                         </ul>
                     </>
-                    :<p>You have no recorded data.</p>}
+                    :
+                        <>
+                        <h3>Welcome {user.username}!</h3>
+                        <p>You have no recorded data.</p>
+                        </>}
                 </div>
                 :
                 <h3>You need to sign in first.</h3>

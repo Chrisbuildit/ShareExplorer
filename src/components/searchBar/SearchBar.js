@@ -77,11 +77,11 @@ function SearchBar() {
                   placeholder="Type a company name or symbol"
                   autoComplete="off"
               />
-              <p className="Warning" >{Object.keys(query).length > 2 ?
+              <p className="Warning" >{query.length > 2 ?
                   <b>Type the symbol of the correct option to perform a search</b>
                 : query && <b>Type a minimum of three characters</b>}</p>
               <ul>
-                {Object.keys(query).length > 2 && searchResults.map((post) => {
+                {query.length > 2 && searchResults.map((post) => {
                     return <li key={post.symbol}>
                         {post.symbol +", "+ post.name}
                     </li>

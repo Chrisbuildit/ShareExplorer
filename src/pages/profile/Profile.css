@@ -21,3 +21,10 @@
     margin-left: -40px;
     margin-top: 0;
 }
+
+.ProfileList li {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 310px;
+}

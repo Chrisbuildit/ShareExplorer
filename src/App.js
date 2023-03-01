@@ -12,8 +12,6 @@ import SearchPage from "./pages/searchPage/SearchPage";
 
 function App() {
 
-        const [pastSearches, setPastSearches] = useState();
-
         return (
         <>
             <NavBar />

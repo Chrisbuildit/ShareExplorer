@@ -1,119 +1,82 @@
-import React, {useEffect, useState, useContext, useRef} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import axios from 'axios';
 import {useParams} from "react-router-dom";
 import './SearchResults.css'
 import DataLayout from "../../components/dataLayout/DataLayout";
 import {AuthContext} from "../../context/AuthContext";
-import {SymbolOverview, TechnicalAnalysis} from "react-ts-tradingview-widget";
+import Widget from "../../components/widget/Widget";
 
 function SearchResults() {
 
     const [companyOverview, setCompanyOverview] = useState({});
     const [error, toggleError] = useState(false)
-    const [pastSearches, setPastSearches] = useState(() => {
-        const parsedItem = JSON.parse(localStorage.getItem("lastSearchCompany"));
-        return parsedItem || []
-    })
 
     const {isAuth, user} = useContext(AuthContext);
-    // Get the userId param from the URL.
     let {companyId} = useParams();
-    // const isFirstRender = useRef(true);
-
-    // const widgetId = (e) => {
-    //     e.preventDefault();
-    //     return companyOverview.Symbol;
-    // }
 
     useEffect(() => {
-        // if (isFirstRender.current) {
-        //     isFirstRender.current = false;
-        //     return;
-        // }
         async function fetchData() {
             toggleError(false);
             try {
                 const response = await
                     axios.get(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${companyId}&apikey=${process.env.REACT_APP_API_KEY}`);
-                if(user) {
-                response.data.Date = Date.now();
-                response.data.User = user.id;
+                if (user) {
+                    response.data.Date = Date.now();
+                    response.data.User = user.id;
                 }
                 setCompanyOverview(response.data);
+                console.log(response);
             } catch (e) {
                 console.error(e);
                 toggleError(true);
             }
         }
+
         if (companyId) {
             void fetchData();
         }
     }, [])
 
-    useEffect(() => {
-        if(companyOverview.Symbol && isAuth)
-            if(pastSearches.length < 20) {
-            setPastSearches([...pastSearches, companyOverview]);
-                console.log('<20')
-        }
-            else {pastSearches &&
-            setPastSearches(pastSearches.shift());
-            setPastSearches([...pastSearches, companyOverview]);
-                console.log('>20')
-        }
-    },[companyOverview])
 
     useEffect(() => {
-            localStorage.setItem("lastSearchCompany", JSON.stringify(pastSearches));
-            console.log('setItem')
-    },[pastSearches])
+        let pastSearches = JSON.parse(localStorage.getItem("lastSearchCompany")) || [];
+        if (companyOverview.Symbol && isAuth)
+            if (pastSearches.length < 20) {
+                pastSearches = [...pastSearches, companyOverview];
+                console.log('<20')
+            } else {
+                const newSearches = pastSearches.slice(1);
+                pastSearches = [...newSearches, companyOverview];
+                console.log('>20')
+            }
+        localStorage.setItem("lastSearchCompany", JSON.stringify(pastSearches));
+    }, [companyOverview])
 
     return (
-        <div className='carpithians SearchResults'>
-            <div className="widgets"> {companyOverview &&
-                <>
-                    {/*<SymbolOverview*/}
-                    {/*    symbols={[*/}
-                    {/*        [companyId]*/}
-                    {/*    ]}*/}
-                    {/*    lineWidth="1"*/}
-                    {/*    width="300"*/}
-                    {/*    height="370"*/}
-                    {/*    widgetFontColor="black"*/}
-                    {/*    dateFormat="dd MMM 'yy"*/}
-                    {/*/>*/}
-                    {/*<TechnicalAnalysis*/}
-                    {/*    colorTheme="light"*/}
-                    {/*    symbol={companyId}*/}
-                    {/*    width="350"*/}
-                    {/*    height="375"*/}
-                    {/*    isTransparent="true"*/}
-                    {/*>*/}
-                    {/*</TechnicalAnalysis>*/}
-                </>
-            }
+        <div className='carpithians'>
+            <div className='SearchResults'>
+                {companyOverview.Name ?
+                    <>
+                        <Widget className="widgets" companyId={companyId}/>
+                        <DataLayout
+                            companyOverview={companyOverview}
+                            isAuth={isAuth}
+                            error={error}
+                            companyId={companyId}
+                        />
+                    </>
+                    : companyId &&
+                    <section className="Nodata">
+                        <p>Unfortunately we have no data for this company.</p>
+                        <p>You can click on the below link for data from Tradingview.</p>
+                        <p><a href={`https://www.tradingview.com/symbols/${companyId}/`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                        >
+                            Link</a></p>
+                    </section>
+                }
             </div>
-        {companyOverview.Name ?
-            <DataLayout
-                companyOverview={companyOverview}
-                isAuth={isAuth}
-                error={error}
-                companyId={companyId}
-                />
-            : companyId &&
-                <div className="Nodata">
-                <p>&nbsp;</p>
-                <p>Unfortunately we have no data for this company.</p>
-                <p>&nbsp;</p>
-                <p>You can click on the below link for data from Tradingview.</p>
-                <p>&nbsp;</p>
-                <p><a href={`https://www.tradingview.com/symbols/${companyId}/`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                >
-                    Link</a></p>
-            </div>
-            }
         </div>
     );
 }

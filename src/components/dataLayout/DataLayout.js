@@ -1,6 +1,7 @@
 import React from 'react';
 import './DataLayout.css'
 import {Link} from "react-router-dom";
+import {SymbolOverview} from "react-ts-tradingview-widget";
 
 
 function DataLayout({companyOverview, error, companyId, isAuth}) {
@@ -13,14 +14,14 @@ function DataLayout({companyOverview, error, companyId, isAuth}) {
                 </Link>}
             </p>
             <div className='inner-container'>
-                <div>{error &&
+                <section>{error &&
                     <>
                         <p>There was a miscommunication with the server in fetching your fundamental data.</p>
                         <p>&nbsp;</p>
                         <p>Please try again.</p>
                     </>
                     }
-                </div>
+                </section>
                 <div>
                     <h2>Fundamental data:</h2>
                     {companyOverview &&
@@ -61,6 +62,16 @@ function DataLayout({companyOverview, error, companyId, isAuth}) {
                         </section>
                     </span>
                     }
+                    {/*<SymbolOverview*/}
+                    {/*    symbols={[*/}
+                    {/*        [companyId]*/}
+                    {/*    ]}*/}
+                    {/*    lineWidth="1"*/}
+                    {/*    width="300"*/}
+                    {/*    height="370"*/}
+                    {/*    widgetFontColor="black"*/}
+                    {/*    dateFormat="dd MMM 'yy"*/}
+                    {/*/>*/}
                 </div>
             </div>
         </div>

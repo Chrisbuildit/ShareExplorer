@@ -1,0 +1,6 @@
+.widgets {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 3em;
+}

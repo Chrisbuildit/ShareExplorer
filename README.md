@@ -4,18 +4,18 @@
 
 A website-application build for retail investors that wants to do stock researching in a fun and nature-inspiring 
 setting. The application provides a search-functionality that provide users with fundamental stock data, as well 
-as a chart and most important of all, a buy or sell advise. Users can keep track of the last company they have researched
+as a chart and a technical analysis. Users can keep track of the last company they have researched
 by creating an account that automatically saves the last company a user has researched.
 
 ## Data sources
 
-All data is provided by third-parties. Fundamental data is sourced from 'Alpha Vantage'. The charts and trading advice from
-Tradingview.
+All data is provided by third-parties. Fundamental data is sourced from 'Alpha Vantage'. The charts and technical 
+analysis are from "tradingview.com"
 
 ## Project status
 
-This is a work-in-process project so the application is currently very limited in its functionality. Future functionality 
-will include a stock screener as well as the ability to save company data for future comparison.
+This is a work-in-process project so the application is currently limited in its functionality. Future functionality 
+will include a stock screener and a trading advice.
 
 ## Project screenshot
 

@@ -10,6 +10,7 @@ function SearchResults() {
 
     const [companyOverview, setCompanyOverview] = useState({});
     const [error, toggleError] = useState(false)
+    const [loading, toggleLoading] = useState(false);
 
     const {isAuth, user} = useContext(AuthContext);
     let {companyId} = useParams();
@@ -17,6 +18,7 @@ function SearchResults() {
     useEffect(() => {
         async function fetchData() {
             toggleError(false);
+            toggleLoading(true);
             try {
                 const response = await
                     axios.get(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${companyId}&apikey=${process.env.REACT_APP_API_KEY}`);
@@ -30,6 +32,7 @@ function SearchResults() {
                 console.error(e);
                 toggleError(true);
             }
+            toggleLoading(false);
         }
 
         if (companyId) {
@@ -65,8 +68,12 @@ function SearchResults() {
                             companyId={companyId}
                         />
                     </>
-                    : companyId &&
-                    <section className="Nodata">
+                    : companyOverview.Note ?
+                    <section className="SearchError">
+                        <p>You have exceeded the search limit of two searches per minute.</p>
+                    </section>
+                    : companyId && !loading &&
+                    <section className="SearchError">
                         <p>Unfortunately we have no data for this company.</p>
                         <p>You can click on the below link for data from Tradingview.</p>
                         <p><a href={`https://www.tradingview.com/symbols/${companyId}/`}

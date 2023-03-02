@@ -5,7 +5,7 @@
     margin-top: 5px;
 }
 
-.Nodata {
+.SearchError {
     display: flex;
     flex-direction: column;
     justify-content: space-between;

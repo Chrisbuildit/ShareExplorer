@@ -1,8 +1,6 @@
 import React from 'react';
 import './DataLayout.css'
 import {Link} from "react-router-dom";
-import {SymbolOverview} from "react-ts-tradingview-widget";
-
 
 function DataLayout({companyOverview, error, companyId, isAuth}) {
 
@@ -62,16 +60,6 @@ function DataLayout({companyOverview, error, companyId, isAuth}) {
                         </section>
                     </span>
                     }
-                    {/*<SymbolOverview*/}
-                    {/*    symbols={[*/}
-                    {/*        [companyId]*/}
-                    {/*    ]}*/}
-                    {/*    lineWidth="1"*/}
-                    {/*    width="300"*/}
-                    {/*    height="370"*/}
-                    {/*    widgetFontColor="black"*/}
-                    {/*    dateFormat="dd MMM 'yy"*/}
-                    {/*/>*/}
                 </div>
             </div>
         </div>

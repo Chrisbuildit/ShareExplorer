@@ -7,6 +7,7 @@ function SearchBar() {
     const [query, setQuery] = useState('');
     const [searchResults, setSearchResults] = useState([""])
     const [isMatch, setIsMatch] = useState(true);
+    const [error, toggleError] = useState(false)
     const navigate = useNavigate();
 
     let match = searchResults.find(item => item.symbol === query.toUpperCase());
@@ -24,19 +25,19 @@ function SearchBar() {
             setIsMatch(true);
             setQuery("")
             navigate("/SearchPage")
+            toggleError(false);
         }
 
         //Function doesn't work. Refreshes after loading
     function keyPressCheck(e) {
         if (e.keyCode === 13) {
-            e.preventDefault();
+            // e.preventDefault();
             handleClick();
         }
     }
 
     function abort() {
         setQuery("")
-        setIsMatch(true);
     }
 
     function update(e) {
@@ -46,6 +47,7 @@ function SearchBar() {
 
     useEffect(() => {
     const fetchData = async (e) => {
+        toggleError(false);
         try {
             console.log("FETCHING RESULTS");
             const result = await
@@ -57,9 +59,9 @@ function SearchBar() {
                         return hintArray.push({symbol: a["1. symbol"], name: a["2. name"]})
                     });
                     setSearchResults(hintArray);
-                    // console.log(searchResults);
                 } catch (e) {
-                        console.error(e);
+                    console.error(e);
+                    toggleError(true);
                     }
     };
     if(Object.keys(query).length > 2) {
@@ -84,7 +86,8 @@ function SearchBar() {
             <div className="Warning">
                   <p>{query.length > 2 ?
                       <b>Type the symbol of the correct option to perform a search</b>
-                    : query && <b>Type a minimum of three characters</b>
+                    : query &&
+                      <b>Type a minimum of three characters</b>
                   }
                   </p>
                 {!isMatch &&
@@ -94,13 +97,16 @@ function SearchBar() {
                   </>
                 }
             </div>
-              <ul>
-                {query.length > 2 && searchResults.map((post) => {
+            {!error ?
+                <ul>
+                    {query.length > 2 && searchResults.map((post) => {
                     return <li key={post.symbol}>
-                        {post.symbol +", "+ post.name}
+                {post.symbol +", "+ post.name}
                     </li>
                 })}
-              </ul>
+                </ul>
+                : <p>You have exceeded the search limit of two searches per minute</p>
+            }
         </section>
       <button
           type="button"

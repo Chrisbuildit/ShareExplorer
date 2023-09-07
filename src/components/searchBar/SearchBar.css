@@ -14,25 +14,34 @@
     align-content: flex-start;
 }
 
-input {
-    min-width: 250px;
+.navbutton {
+    min-width: 300px;
     outline: none;
-    padding-block: 5px;
+    /*padding-block: 5px;*/
     vertical-align: center;
+    /*position: absolute;*/
+    max-height: 25px;
+    /*background-color: transparent;*/
 }
 
-.searchbar li {
-    list-style-type: none;
+.mySelect_value-container {
+    min-height: 25px !important;
+    min-width: 300px;
 }
 
-.searchbar ul {
-    display: flex;
-    flex-direction: column;
-    align-self: flex-start;
-    margin-left: -40px;
-    max-width: fit-content;
-    gap: 0.3em;
-}
+
+/*.searchbar li {*/
+/*    list-style-type: none;*/
+/*}*/
+
+/*.searchbar ul {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    align-self: flex-start;*/
+/*    margin-left: -40px;*/
+/*    max-width: fit-content;*/
+/*    gap: 0.3em;*/
+/*}*/
 
 .searchbar Select,
 .searchbar button {
@@ -41,6 +50,7 @@ input {
 
 .Warning {
     color: crimson;
+    margin-left: 30px;
 }
 
 

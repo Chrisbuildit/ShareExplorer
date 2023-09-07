@@ -57,6 +57,7 @@ button {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  margin-top: 50px;
 }
 
 .SignUpIn form {

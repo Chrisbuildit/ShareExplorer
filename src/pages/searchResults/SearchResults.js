@@ -21,7 +21,13 @@ function SearchResults() {
             toggleLoading(true);
             try {
                 const response = await
-                    axios.get(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${companyId}&apikey=${process.env.REACT_APP_API_KEY}`);
+                    axios.get(
+                        `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${companyId}&apikey=${process.env.REACT_APP_API_KEY}`);
+                        // `https://stock-analysis.p.rapidapi.com/api/v1/resources/profile`,{ticker: {companyId}},{
+                        //     'X-RapidAPI-Key': 'f211d01513mshd106e5c18362c9ap1146e2jsnee413242906a',
+                        //     'X-RapidAPI-Host': 'stock-analysis.p.rapidapi.com'
+                        // }
+                        // )
                 if (user) {
                     response.data.Date = Date.now();
                     response.data.User = user.id;

@@ -37,14 +37,6 @@ function SearchBar() {
         navigate(`/searchResults`)
     }
 
-    //ReactSearchAutocomplete function
-    // const formatResult = (item) => {
-    //     console.log(item);
-    //     return (
-    //         <span style={{ display: 'block', textAlign: 'left' }}>{item.symbol} + ", " + {item.name}</span>
-    //     )
-    // }
-
     function abort() {
         setQuery("")
     }
@@ -90,7 +82,8 @@ function SearchBar() {
             <Select
                 // classNamePrefix="mySelect"
                 options={optionList}
-                // inputValue={query}
+                inputValue={query}
+                placeholder="Enter the name or symbol of the company"
                 onInputChange={handleOnSearch}
                 isSearchable={true}
                 isClearable={true}
@@ -102,33 +95,8 @@ function SearchBar() {
                 value={selection}
                 aria-label="Single select"
                 styles={customStyles}
+                formatOptionLabel={formatOptionLabel}
             />
-                {/*<ReactSearchAutocomplete*/}
-                {/*    items={searchResults}*/}
-                {/*    onSearch={handleOnSearch}*/}
-                {/*    onSelect={handleOnSelect}*/}
-                {/*    FormatResult={formatResult}*/}
-                {/*    placeholder="Type a company name or symbol"*/}
-                {/*    showIcon={false}*/}
-                {/*    autoFocus={true}*/}
-                {/*    onClear={handleOnClear}*/}
-                {/*    // onFocus={handleOnFocus}*/}
-                {/*    // onHover={handleOnHover}*/}
-                {/*    // fuseOptions={{keys: ["symbol","name"]}}*/}
-                {/*    // resultStringKeyName="symbol"*/}
-                {/*    // inputSearchString={query}*/}
-                {/*    styling={{*/}
-                {/*        placeholderColor: "black",*/}
-                {/*        backgroundColor: "white",*/}
-                {/*        // zIndex: 3,*/}
-                {/*        // position: "absolute",*/}
-                {/*        boxShadow: "white",*/}
-                {/*        border: "none",*/}
-                {/*        height: "20px",*/}
-                {/*        //width doen niks omdat deur button width beperk word*/}
-                {/*        width: "400px"*/}
-                {/*    }}*/}
-                {/*/>*/}
             <div className="Warning">
                   <p>{query.length > 2 ?
                       <b>Type the symbol of the correct option to perform a search</b>
@@ -185,3 +153,29 @@ const customStyles = {
         height: '30px',
     }),
 };
+
+const formatOptionLabel = (value) => {
+    return (
+        <div
+            style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+            }}
+        >
+            <div
+                style={{
+                    flexGrow: '1',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                }}
+            >
+                {value.label}
+            </div>
+            <div style={{ textAlign: 'right', color: 'green' }}>
+                {value.value}
+            </div>
+        </div>
+    )
+}

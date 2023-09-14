@@ -4,8 +4,9 @@ import axios from "axios";
 import {useNavigate} from "react-router-dom";
 // import { ReactSearchAutocomplete } from 'react-search-autocomplete'
 // import { uuid } from 'uuidv4'
-import Select, { components, InputActionMeta } from 'react-select'
-import SearchResults from "../../pages/searchResults/SearchResults";
+import Select from 'react-select'
+import OtcStocks from './data/data.json';
+import Test from './data/test.json';
 
 function SearchBar() {
     const [query, setQuery] = useState('');
@@ -56,10 +57,17 @@ function SearchBar() {
                 console.log(result);
                 const hintArray = []
                 result.data.bestMatches.map((a) => {
-                    return hintArray.push({symbol: a["1. symbol"], name: a["2. name"]})
+                    return hintArray.push({symbol: a["1. symbol"], name: a["2. name"], type: a["3. type"], region: a["4. region"]})
                 });
-                setSearchResults(hintArray);
-                console.log(searchResults);
+                const list = hintArray.filter((post) => {
+                    return post.type === "Equity" && post.region === "United States";
+                })
+                // Excludes OTC-shares from list
+                const filteredArray = list.filter((element) =>
+                    !OtcStocks.some((otc) => otc.symbol === element.symbol)
+                )
+                setSearchResults(filteredArray);
+                console.log(filteredArray);
         } catch (e) {
             console.error(e);
             toggleError(true);

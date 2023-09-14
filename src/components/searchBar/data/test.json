@@ -1,0 +1,26 @@
+[
+  {
+    "symbol": "AABC",
+    "name": "AA",
+    "type": "WE",
+    "region": "EWE"
+  },
+  {
+    "symbol": "AABB",
+    "name": "WE",
+    "type": "EW",
+    "region": "EW"
+  },
+  {
+    "symbol": "AABD",
+    "name": "IU",
+    "type": "SD",
+    "region": "EW"
+  },
+  {
+    "symbol": "AABE",
+    "name": "YJ",
+    "type": "WE",
+    "region": "RF"
+  }
+]

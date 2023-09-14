@@ -6,7 +6,6 @@ import {useNavigate} from "react-router-dom";
 // import { uuid } from 'uuidv4'
 import Select from 'react-select'
 import OtcStocks from './data/data.json';
-import Test from './data/test.json';
 
 function SearchBar() {
     const [query, setQuery] = useState('');

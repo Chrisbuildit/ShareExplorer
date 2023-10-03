@@ -7,14 +7,14 @@ import createDateString from "../../helpers/createDateString/CreateDateString";
 
 function CompanyDetails() {
 
-    let { dateNow } = useParams();
+    let { date } = useParams();
     const [lastSearch, setLastSearch] = useState([]);
     const {user} = useContext(AuthContext);
 
     useEffect(() => {
         setLastSearch(JSON.parse(localStorage.getItem("lastSearchCompany")));
         console.log(lastSearch);
-    }, [dateNow]);
+    }, [date]);
 
     const userFilter = lastSearch.filter((post) => {
         return post.User === user.id;
@@ -22,19 +22,21 @@ function CompanyDetails() {
     console.log(userFilter)
 
     const currentPost = userFilter.find((post) => {
-        return post.Date === parseInt(dateNow);
+        return post.Date === parseInt(date);
     });
-    console.log(dateNow);
+    console.log(date);
 
     return (
-        <div className='carpithians company-details'>
-            <p className='heading'>The results are from {currentPost && createDateString(currentPost.Date)}</p>
-            <DataLayout
-                companyOverview={currentPost}
-                isAuth={true}
-                error={false}
-                companyId={true}
-            />
+        <div className='carpithians'>
+            <div className='company-details'>
+                <p className='heading'>The results are from {currentPost && createDateString(currentPost.Date)}</p>
+                <DataLayout
+                    companyOverview={currentPost}
+                    isAuth={true}
+                    error={false}
+                    companyId={true}
+                />
+            </div>
         </div>
     )
 }

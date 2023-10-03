@@ -67,12 +67,15 @@ function SearchResults() {
                 {companyOverview.Name ?
                     <>
                         <Widget className="widgets" companyId={companyId}/>
-                        <DataLayout
-                            companyOverview={companyOverview}
-                            isAuth={isAuth}
-                            error={error}
-                            companyId={companyId}
-                        />
+                        <div>
+                            <h2>Fundamental data:</h2>
+                            <DataLayout
+                                companyOverview={companyOverview}
+                                isAuth={isAuth}
+                                error={error}
+                                companyId={companyId}
+                            />
+                        </div>
                     </>
                     : companyOverview.Note ?
                     <section className="SearchError">

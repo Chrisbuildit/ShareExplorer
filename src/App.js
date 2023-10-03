@@ -23,7 +23,7 @@ function App() {
                 <Routes>
                         <Route path="/" element={ <Home /> }/>
                         <Route path="/searchResults/:companyId" element={ <SearchResults /> }/>
-                        <Route path="/company-details/:dateNow" element={ <CompanyDetails /> }/>
+                        <Route path="/company-details/:date" element={ <CompanyDetails /> }/>
                         <Route path="/profile" element={ <Profile /> }/>
                         <Route path="/signUp" element={ <SignUp/> }/>
                         <Route path="/signIn" element={ <SignIn/> }/>

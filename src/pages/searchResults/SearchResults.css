@@ -15,3 +15,9 @@
     height: 50px;
     top: 15px;
 }
+
+h2  {
+    line-height: 0;
+    font-size: 1.2em;
+    padding-left: 40px;
+}

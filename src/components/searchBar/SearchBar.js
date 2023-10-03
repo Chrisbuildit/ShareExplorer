@@ -56,8 +56,7 @@ function SearchBar() {
     }
 
     const handleOnChange = () => {
-        setSelection('');
-        navigate(`/searchResults`)
+        navigate(`/searchPage`)
     }
 
     // function abort() {
@@ -89,7 +88,8 @@ function SearchBar() {
                 isClearable={true}
                 isLoading={!!query && isLoading}
                 // used to specify a function that filters the option to be displayed from the options prop.
-                filterOption={null}
+                // filterOption={null}
+                noOptionsMessage={() => null}
                 // invoked whenever an option is selected.
                 onChange={handleOnSelect}
                 onMenuOpen={handleOnChange}

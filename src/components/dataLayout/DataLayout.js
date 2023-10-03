@@ -21,7 +21,6 @@ function DataLayout({companyOverview, error, companyId, isAuth}) {
                     }
                 </section>
                 <div>
-                    <h2>Fundamental data:</h2>
                     {companyOverview &&
                     <span>
                         <section>
